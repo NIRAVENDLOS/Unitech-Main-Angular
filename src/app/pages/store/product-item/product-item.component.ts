@@ -81,7 +81,7 @@ export class ProductItemComponent implements OnInit {
         type: "number",
       },
       frequency: {
-        title: "Frequency",
+        title: "Purchase Time Limit",
         type: "number",
       },
       quantity: {
@@ -138,7 +138,7 @@ export class ProductItemComponent implements OnInit {
         type: "number",
       },
       frequency: {
-        title: "Frequency",
+        title: "Purchase Time Limit",
         type: "number",
       },
       quantity: {

@@ -44,6 +44,7 @@ export class IssueComponent implements OnInit {
 
   tax: any;
   total: any;
+  basicAmmount: number;
 
   deptName: any = [
     "bloowroom",
@@ -820,6 +821,7 @@ export class IssueComponent implements OnInit {
     let price = event.target.value;
     let quantity = this.IndentForm.value.quantity;
     if (this.tax != null && price != null && quantity != null) {
+      this.basicAmmount = quantity * price;
       this.total = (quantity * price * this.tax) / 100 + quantity * price;
     }
   }
@@ -827,6 +829,7 @@ export class IssueComponent implements OnInit {
     let price = this.IndentForm.value.estimatedPrice;
     let quantity = event.target.value;
     if (this.tax != null && price != null && quantity != null) {
+      this.basicAmmount = quantity * price;
       this.total = (quantity * price * this.tax) / 100 + quantity * price;
     }
   }

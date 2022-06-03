@@ -13,7 +13,7 @@
         >
         </ng2-smart-table>
       </nb-tab>
-      <nb-tab tabTitle="Add Stock" *ngIf="store || admin">
+      <!-- <nb-tab tabTitle="Add Stock" *ngIf="store || admin">
         <form [formGroup]="AddStockForm" (ngSubmit)="onStockUpdateFormSubmit()">
           <div class="row">
             <div class="col-md-6">
@@ -87,7 +87,7 @@
             </button>
           </div>
         </form>
-      </nb-tab>
+      </nb-tab> -->
       <nb-tab tabTitle="Create Item" *ngIf="store || admin">
         <form [formGroup]="ItemForm" (ngSubmit)="onItemFormSubmit()">
           <div class="row">
@@ -193,7 +193,7 @@
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label for="frequency" class="label">Time Limit</label>
+                <label for="frequency" class="label">Time Limit (In Days)</label>
                 <input
                   type="number"
                   nbInput
@@ -252,7 +252,7 @@
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label for="paytax" class="label">Tax</label>
+                <label for="paytax" class="label">Tax (%)</label>
                 <input
                   type="tel"
                   nbInput
