@@ -909,7 +909,6 @@ export class FinisherComponent implements OnInit {
   }
 
   onFinisherParameterAoneSubmit() {
-    console.warn(this.finisherparameterAone);
     for (let i = 0; i < this.finisherparameterAone.value.parareading.length; i++) {
       let Mid = this.finisherparameterAone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursOne': this.finisherparameterAone.value.parareading[i].shift_a_sixHoursOne }
@@ -923,7 +922,6 @@ export class FinisherComponent implements OnInit {
   }
 
   onFinisherParameterAtwoSubmit() {
-    console.warn(this.finisherparameterAtwo.value);
     for (let i = 0; i < this.finisherparameterAtwo.value.parareading.length; i++) {
       let Mid = this.finisherparameterAtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursTwo': this.finisherparameterAtwo.value.parareading[i].shift_a_sixHoursTwo }
@@ -963,7 +961,6 @@ export class FinisherComponent implements OnInit {
   }
 
   onFinisherParameterAoneHankSubmit() {
-    console.warn(this.finisherparameterHankAone);
     for (let i = 0; i < this.finisherparameterHankAone.value.parareading.length; i++) {
       let Mid = this.finisherparameterHankAone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursOne': this.finisherparameterHankAone.value.parareading[i].shift_a_sixHoursOne }
@@ -977,7 +974,6 @@ export class FinisherComponent implements OnInit {
   }
 
   onFinisherParameterAtwoHankSubmit() {
-    console.warn(this.finisherparameterHankAtwo.value);
     for (let i = 0; i < this.finisherparameterHankAtwo.value.parareading.length; i++) {
       let Mid = this.finisherparameterHankAtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursTwo': this.finisherparameterHankAtwo.value.parareading[i].shift_a_sixHoursTwo }

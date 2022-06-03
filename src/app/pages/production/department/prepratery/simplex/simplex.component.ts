@@ -356,7 +356,6 @@ export class SimplexComponent implements OnInit {
 
     this.MachinePara.DateSingleSimplex(this.dateService.format(this.todayDate, 'yyyy-MM-dd')).subscribe(data => {
       this.source = data.Data;
-      console.warn(this.source);
       let a = data.Data.length;
       if(a <= 0) {
         this.QcMachineParameterNotSetError = true;
@@ -601,7 +600,6 @@ export class SimplexComponent implements OnInit {
   }
 
   onSimplexParameterAoneSubmit() {
-    console.warn(this.simplexparameterAone);
     for (let i = 0; i < this.simplexparameterAone.value.parareading.length; i++) {
       let Mid = this.simplexparameterAone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursOne': this.simplexparameterAone.value.parareading[i].shift_a_sixHoursOne }
@@ -615,7 +613,6 @@ export class SimplexComponent implements OnInit {
   }
 
   onSimplexParameterAtwoSubmit() {
-    console.warn(this.simplexparameterAtwo.value);
     for (let i = 0; i < this.simplexparameterAtwo.value.parareading.length; i++) {
       let Mid = this.simplexparameterAtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursTwo': this.simplexparameterAtwo.value.parareading[i].shift_a_sixHoursTwo }

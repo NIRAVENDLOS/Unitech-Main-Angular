@@ -561,7 +561,6 @@ export class RingframeComponent implements OnInit {
         this.MachineNotFounderror = true;
       }
       for (let i = 0; i < a; i++) {
-        console.warn(data);
         this.ringframeGet.push(this.Ringframe(data[i]));
       }
     });
@@ -641,7 +640,6 @@ export class RingframeComponent implements OnInit {
         this.redingB5.push(data.Data[i].averageshift_b_HankFive);
         this.redingB6.push(data.Data[i].averageshift_b_HankSix);
 
-        // console.warn(data.Data[i]);
       }
 
       if (this.admin && !this.MachineNotFounderror) {
@@ -785,7 +783,7 @@ export class RingframeComponent implements OnInit {
           },
         });
       }
-      // console.warn(data.Data);
+      
       if (data.Data.length <= 0) {
         this.qcokay = true;
         this.qcdataokay = false;

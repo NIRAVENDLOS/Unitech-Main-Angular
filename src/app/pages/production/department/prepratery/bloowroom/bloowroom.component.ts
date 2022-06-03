@@ -267,7 +267,6 @@ export class BloowroomComponent implements OnInit {
 
     this.post.ViewAllBloowRoom().subscribe(data => {
       this.demo = data;
-      console.warn(this.demo);
       let a = this.demo.length;
       if(a <= 0) {
         this.MachineNotFounderror = true;
@@ -281,7 +280,6 @@ export class BloowroomComponent implements OnInit {
     //   let a = data.Data.length;
     //   for (let i = 0; i < a; i++) {
     //     this.BloowroomGet.push(this.Bloowroom(data.Data[i]));
-    //     console.warn(this.BloowroomGet);
     //   }
     // });
 

@@ -31,7 +31,6 @@ export class UserOneComponent implements OnInit {
       this.order = params.user;
       this.post.ViewUserProfile(this.order).subscribe(data => {
         this.UserDetails = data;
-        console.warn(data);
         if(this.UserDetails.userQualificationData.length > 0) {
           this.UserQualification = this.UserDetails.userQualificationData;
           this.Qualification = true;
@@ -48,13 +47,6 @@ export class UserOneComponent implements OnInit {
         this.UserHr = this.UserDetails.hrModel;
         this.Hr = true;
         }
-        // this.UserHr = Object.assign({},this.UserHr[0]);
-        // alert(this.UserQualification.length);
-
-        // alert();
-        // Object.fromEntries(array);
-        console.warn(this.UserHr);
-        // console.warn(this.UserQualification);
       });
     });
 

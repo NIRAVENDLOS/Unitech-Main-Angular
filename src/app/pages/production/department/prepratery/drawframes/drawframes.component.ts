@@ -912,7 +912,6 @@ export class DrawframesComponent implements OnInit {
   }
 
   onDrawframesParameterAoneSubmit() {
-    console.warn(this.drawframesparameterAone);
     for (let i = 0; i < this.drawframesparameterAone.value.parareading.length; i++) {
       let Mid = this.drawframesparameterAone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursOne': this.drawframesparameterAone.value.parareading[i].shift_a_sixHoursOne }
@@ -926,7 +925,6 @@ export class DrawframesComponent implements OnInit {
   }
 
   onDrawframesParameterAtwoSubmit() {
-    console.warn(this.drawframesparameterAtwo.value);
     for (let i = 0; i < this.drawframesparameterAtwo.value.parareading.length; i++) {
       let Mid = this.drawframesparameterAtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursTwo': this.drawframesparameterAtwo.value.parareading[i].shift_a_sixHoursTwo }
@@ -966,7 +964,6 @@ export class DrawframesComponent implements OnInit {
   }
 
   onDrawframesParameterAoneHankSubmit() {
-    console.warn(this.drawframesparameterHankAone);
     for (let i = 0; i < this.drawframesparameterHankAone.value.parareading.length; i++) {
       let Mid = this.drawframesparameterHankAone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursOne': this.drawframesparameterHankAone.value.parareading[i].shift_a_sixHoursOne }
@@ -980,7 +977,6 @@ export class DrawframesComponent implements OnInit {
   }
 
   onDrawframesParameterAtwoHankSubmit() {
-    console.warn(this.drawframesparameterHankAtwo.value);
     for (let i = 0; i < this.drawframesparameterHankAtwo.value.parareading.length; i++) {
       let Mid = this.drawframesparameterHankAtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursTwo': this.drawframesparameterHankAtwo.value.parareading[i].shift_a_sixHoursTwo }

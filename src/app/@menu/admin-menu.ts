@@ -6,7 +6,6 @@ import decode from 'jwt-decode';
 // let tokenPayload: any = [];
 // if (token) {
 //   tokenPayload = decode(token);
-//   console.warn(tokenPayload);
 // }
 export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
   {

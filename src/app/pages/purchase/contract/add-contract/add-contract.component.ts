@@ -69,32 +69,8 @@ export class AddContractComponent implements OnInit {
     this.contractForm.markAsDirty();
     let venconData = this.contractForm.value;
 
-    console.warn(venconData);
-
     this.contractService.CreateContract(venconData).subscribe((data:any) => {
-
       let a = data.partyLotModels;
-
-    //   this.contractService.ContractVender(data.Data.id,venconData.vendorData).subscribe((data:any) => {
-    //     console.warn("vendor done");
-    //   });
-    //   this.contractService.ContractItem(data.Data.id,venconData.itemdata).subscribe((data:any) => {
-    //     console.warn("item done");
-    //   });
-
-    //   let a = this.contractForm.value.partyplotNumber;
-    //   for(let i = 0; i < a.length;i++) {
-    //     var b= {};
-    //     var c = {'id':data.Data.id};
-    //     b['partyNumber'] = a[i];
-    //     b['contract'] = c;
-    //     console.warn(b);
-    //     this.partyLotService.CreateParty(b).subscribe((data:any) => {
-    //       console.warn(b);
-    //     });
-    //   }
-    //   this.contractForm.reset();
-
       alert("data successfully uploaded");
     },
     (Error: any) => {
@@ -118,8 +94,6 @@ export class AddContractComponent implements OnInit {
     for(let i = 0; i < partylotno; i++) {
       this.partyLot.push(this.AddpartyLot()); //pop
     }
-    // console.warn(this.contractForm);
-
   }
 
 }

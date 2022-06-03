@@ -11,7 +11,6 @@ export class StrictNumberOnlyDirective {
 
   @HostListener('keydown',['$event'])onKeyDown(event: KeyboardEvent) {
     const inputValue: string = this.elementRef.nativeElement.value.concat(event.key);
-    // console.warn(inputValue);
     if(inputValue && !String(inputValue).match(this.regex)) {
       event.preventDefault();
     }
