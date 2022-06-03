@@ -23,7 +23,7 @@ export class NgxLoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this._fb.group({
-      phoneno: ['', Validators.required, Validators.pattern],
+      phoneno: ['', [Validators.required, Validators.pattern]],
       password: ['', Validators.required],
     });
 
@@ -33,7 +33,7 @@ export class NgxLoginComponent implements OnInit {
   }
 
   NumberOnly(event) {
-    if (event.key.length === 1 && ((event.which < 48 || event.which > 57) && (event.which < 96 || event.which > 105))) {
+    if(!(event.which >= 48 && event.which <= 57) && !(event.which >= 96 && event.which <= 105) && (event.which != 110&& event.which != 8)) {
       event.preventDefault();
     }
   }
