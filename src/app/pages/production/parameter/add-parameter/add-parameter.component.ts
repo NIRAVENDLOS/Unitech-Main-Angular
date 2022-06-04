@@ -247,7 +247,6 @@ export class AddParameterComponent implements OnInit {
   }
 
   NumberOnly(event) {
-    // console.warn(event);
     let inputValue = event.key;
     if((inputValue && !String(inputValue).match(this.regex)) && !String(event.key).match('Backspace')) {
       event.preventDefault();
@@ -267,7 +266,6 @@ export class AddParameterComponent implements OnInit {
   onCardingSubmit() {
     this.MachinePara.AddCardingParameter(this.cardingpara.value).subscribe((data:any) => {
       this.carding = data;
-      // console.warn(this.carding.machineId);
       this.MachinePara.AssignCardingParameter(this.id,this.carding.machineId).subscribe((data:any) => {
       });
       alert("Date Submited Success Fully...");

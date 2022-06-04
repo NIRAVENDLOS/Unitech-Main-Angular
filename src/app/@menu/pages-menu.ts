@@ -8,10 +8,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/dashboard',
     home: false,
   },
-  {
-    title: 'FEATURES',
-    group: false,
-  },
+  // {
+  //   title: 'FEATURES',
+  //   group: false,
+  // },
   // {
   //   title: 'HR',
   //   icon: 'layout-outline',

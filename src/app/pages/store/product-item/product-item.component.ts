@@ -81,7 +81,7 @@ export class ProductItemComponent implements OnInit {
         type: "number",
       },
       frequency: {
-        title: "Frequency",
+        title: "Purchase Time Limit",
         type: "number",
       },
       quantity: {
@@ -138,7 +138,7 @@ export class ProductItemComponent implements OnInit {
         type: "number",
       },
       frequency: {
-        title: "Frequency",
+        title: "Purchase Time Limit",
         type: "number",
       },
       quantity: {
@@ -280,7 +280,6 @@ export class ProductItemComponent implements OnInit {
   }
 
   onIssueFormSubmit() {
-    // console.warn(this.IssueForm.value);
     // this.post.CreateIssue(this.IssueForm.value).subscribe((data: any) => {
     //   this.IssueForm.reset();
     //   this.NbDialogRef.close();
@@ -289,7 +288,6 @@ export class ProductItemComponent implements OnInit {
 
     let deptName = this.IssueForm.value.deptName;
     this.usageItemForm.get("deptName").setValue(deptName);
-    console.warn(this.IssueForm.value.machineName);
 
     if (deptName == "bloowroom") {
       this.usageItemForm.addControl(
@@ -378,7 +376,6 @@ export class ProductItemComponent implements OnInit {
     }
 
     this.post.CreateIssue(this.IssueForm.value).subscribe((data: any) => {
-      // console.warn(data.Data.issueId);
       this.usageItemForm
         .get("issuedItem")
         .get("issueId")
@@ -488,11 +485,9 @@ export class ProductItemComponent implements OnInit {
     formData.append("file", this.UploadItemForm.value.file);
     this.postItem.ItemUpload(formData).subscribe(
       (data: any) => {
-        // console.warn("done");
         // alert("Excel upload");
       },
       (error: Error) => {
-        // console.warn(error);
       }
     );
   }

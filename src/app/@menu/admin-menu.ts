@@ -6,7 +6,6 @@ import decode from 'jwt-decode';
 // let tokenPayload: any = [];
 // if (token) {
 //   tokenPayload = decode(token);
-//   console.warn(tokenPayload);
 // }
 export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
   {
@@ -15,12 +14,12 @@ export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/dashboard',
     home: false,
   },
+  // {
+  //   title: 'FEATURES',
+  //   group: false,
+  // },
   {
-    title: 'FEATURES',
-    group: false,
-  },
-  {
-    title: 'Hr',
+    title: 'HR',
     icon: 'layout-outline',
     children: [
       {

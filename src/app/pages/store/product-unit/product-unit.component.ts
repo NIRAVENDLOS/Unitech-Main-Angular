@@ -63,7 +63,6 @@ export class ProductUnitComponent implements OnInit {
     })
     this.post.ViewUnit().subscribe(data => {
       this.source = data.Data;
-        console.warn(data);
     });
 
   }

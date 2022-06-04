@@ -158,24 +158,19 @@ export class ReportComponent implements OnInit {
       end: [null, Validators.required],
     });
     this.post.ViewUsageItem().subscribe((data) => {
-      // console.warn(data);
     });
     this.postItem.ViewItem().subscribe((data: any) => {
       this.item = data.Data;
-      console.warn(this.item);
     });
   }
 
   chengeDepartmentName(event) {
-    // console.warn(event);
     this.post.ViewDepartUsageItem(event).subscribe((data) => {
-      // console.warn(data.Data);
       this.Source = data.Data;
     });
   }
 
   onDateSubmit() {
-    // console.warn(this.TwoDate.value);
     let start = this.TwoDate.get("start").value;
     let end = this.TwoDate.get("end").value;
     let deptname = this.TwoDate.get("deptname").value;
@@ -189,14 +184,12 @@ export class ReportComponent implements OnInit {
       this.post
         .ViewFilterUsageItem(deptname, start, end)
         .subscribe((data: any) => {
-          // console.warn(data.Data);
           this.SourceFilter = data.Data;
         });
     } else {
       this.post
         .ViewFilterUsageItemId(deptname, start, end, machineName)
         .subscribe((data: any) => {
-          // console.warn(data.Data + "ssssssssss");
           this.SourceFilter = data.Data;
         });
     }
@@ -209,7 +202,6 @@ export class ReportComponent implements OnInit {
     if (start != null && end != null && itemId != null) {
       this.post.ItemDateIssue(start, end, itemId).subscribe((data: any) => {
         this.SourceItemFilter = data.Data;
-        console.warn(data);
       });
     }
   }

@@ -25,7 +25,6 @@ export class LoginService {
   loginuser(token) {
     localStorage.setItem('token',token.accessToken);
     this.user = this.getUser(token.accessToken);
-    // console.warn(this.user);
     return false;
   }
 

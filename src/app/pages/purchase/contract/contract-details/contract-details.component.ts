@@ -83,7 +83,6 @@ export class ContractDetailsComponent implements OnInit {
   }
 
   ViewUserDetails(event) {
-    // console.warn(event);
     this.MainEvent = event.data;
 
     switch(event.action) {
@@ -100,7 +99,6 @@ export class ContractDetailsComponent implements OnInit {
   }
 
   contractView(event) {
-    console.warn(event);
     // this.MainEvent = event;
     this.venderService.ViewVender().subscribe(data => {
       this.vender = data.Data;
@@ -174,13 +172,11 @@ export class ContractDetailsComponent implements OnInit {
     return this.ContractForm.get('partyLotModels') as FormArray;
   }
   onFSimplingSubmit() {
-    console.warn(this.SimplingForm.value);
   }
 
   downloadAsPDF(event) {
     let party = event.partyLotModels;
     let po_number = event.poData;
-    console.warn(event);
     let docDefinition = {
       content: [
         {

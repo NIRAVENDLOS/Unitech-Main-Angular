@@ -55,7 +55,6 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.post.ViewAllUserProfile().subscribe(data => {
       this.source = data.Total_User;
-      // console.warn(data);
     });
   }
 

@@ -30,6 +30,7 @@ export class IndentComponent implements OnInit {
 
   tax: any;
   total: any;
+  basicAmmount: number;
 
   ResponceSource: any = [];
   IndentSource: any = [];
@@ -69,7 +70,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Total Price',
+        title: 'Basic Ammount',
+        type: 'number',
+      },
+      includingTax: {
+        title: 'Total Ammount',
         type: 'number',
       },
       created: {
@@ -118,7 +123,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Total Price',
+        title: 'Basic Ammount',
+        type: 'number',
+      },
+      includingTax: {
+        title: 'Total Ammount',
         type: 'number',
       },
       created: {
@@ -178,7 +187,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Total Price',
+        title: 'Basic Ammount',
+        type: 'number',
+      },
+      includingTax: {
+        title: 'Total Ammount',
         type: 'number',
       },
       created: {
@@ -238,7 +251,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Total Price',
+        title: 'Basic Ammount',
+        type: 'number',
+      },
+      includingTax: {
+        title: 'Total Ammount',
         type: 'number',
       },
       created: {
@@ -287,7 +304,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Total Price',
+        title: 'Basic Ammount',
+        type: 'number',
+      },
+      includingTax: {
+        title: 'Total Ammount',
         type: 'number',
       },
       created: {
@@ -347,7 +368,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Total Price',
+        title: 'Basic Ammount',
+        type: 'number',
+      },
+      includingTax: {
+        title: 'Total Ammount',
         type: 'number',
       },
       created: {
@@ -396,7 +421,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Total Price',
+        title: 'Basic Ammount',
+        type: 'number',
+      },
+      includingTax: {
+        title: 'Total Ammount',
         type: 'number',
       },
       created: {
@@ -445,7 +474,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Total Price',
+        title: 'Basic Ammount',
+        type: 'number',
+      },
+      includingTax: {
+        title: 'Total Ammount',
         type: 'number',
       },
       created: {
@@ -505,7 +538,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Total Price',
+        title: 'Basic Ammount',
+        type: 'number',
+      },
+      includingTax: {
+        title: 'Total Ammount',
         type: 'number',
       },
       created: {
@@ -655,7 +692,6 @@ export class IndentComponent implements OnInit {
   }
 
   ItemPriceTotal(event) {
-    console.warn(event);
     this.IndentForm.get('estimatedPrice').setValue(null);
     this.IndentForm.get('quantity').setValue(null);
     this.tax = null;
@@ -666,10 +702,10 @@ export class IndentComponent implements OnInit {
   }
 
   taxToatal(event) {
-    console.warn(this.IndentForm.value.quantity);
     let price = event.target.value;
     let quantity = this.IndentForm.value.quantity;
     if(this.tax != null && price != null && quantity != null) {
+      this.basicAmmount = quantity * price;
       this.total = (quantity * price * this.tax / 100) + quantity * price;
     }
   }
@@ -677,6 +713,7 @@ export class IndentComponent implements OnInit {
     let price = this.IndentForm.value.estimatedPrice;
     let quantity = event.target.value;
     if(this.tax != null && price != null && quantity != null) {
+      this.basicAmmount = quantity * price;
       this.total = (quantity * price * this.tax / 100) + quantity * price;
     }
   }
@@ -695,7 +732,6 @@ export class IndentComponent implements OnInit {
   }
 
   onChangeIndentStatus(event,dialog) {
-    console.warn(event);
     this.IndentOpenForm.get('indentId').setValue(event.indentId);
     this.NbDialogRef1 = this.dialogService.open(
       dialog,
@@ -705,9 +741,7 @@ export class IndentComponent implements OnInit {
   }
 
   onChangeIndentViewStatus(event,dialog) {
-    console.warn(event);
     this.postResponce.ViewByStatusResponce('INDENT', event.indentId).subscribe((data: any) => {
-      console.warn(data);
       this.ResponceSource = data.Data;
     })
     this.NbDialogRef2 = this.dialogService.open(
@@ -741,10 +775,8 @@ export class IndentComponent implements OnInit {
       }
       this.ResponceForm.get('issueStatus').setValue("ACCOUNT");
     } 
-    // console.warn(Opendata);
 
     this.post.StatusUpdateIndent(this.IndentOpenForm.value.indentId, Opendata).subscribe((data: any) => {
-      // console.warn(data);
       this.postResponce.CreateResponce(this.ResponceForm.value).subscribe((data: any) => {
         this.NbDialogRef1.close();
         this.ngOnInit();
@@ -770,11 +802,8 @@ export class IndentComponent implements OnInit {
       }
       this.ResponceForm.get('issueStatus').setValue("GM");
     } 
-    
-    // console.warn(Opendata);
 
     this.post.StatusUpdateIndent(this.IndentOpenForm.value.indentId, Opendata).subscribe((data: any) => {
-      // console.warn(data);
       this.postResponce.CreateResponce(this.ResponceForm.value).subscribe((data: any) => {
         this.NbDialogRef1.close();
         this.ngOnInit();

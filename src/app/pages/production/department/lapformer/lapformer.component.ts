@@ -529,7 +529,6 @@ export class LapformerComponent implements OnInit {
   }
 
   onLapformerParameterAoneSubmit() {
-    console.warn(this.lapformerparameterAone);
     for (let i = 0; i < this.lapformerparameterAone.value.parareading.length; i++) {
       let Mid = this.lapformerparameterAone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursOne': this.lapformerparameterAone.value.parareading[i].shift_a_sixHoursOne }
@@ -543,7 +542,6 @@ export class LapformerComponent implements OnInit {
   }
 
   onLapformerParameterAtwoSubmit() {
-    console.warn(this.lapformerparameterAtwo.value);
     for (let i = 0; i < this.lapformerparameterAtwo.value.parareading.length; i++) {
       let Mid = this.lapformerparameterAtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursTwo': this.lapformerparameterAtwo.value.parareading[i].shift_a_sixHoursTwo }

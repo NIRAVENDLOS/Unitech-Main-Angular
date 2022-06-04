@@ -20,10 +20,11 @@ export class NgxLoginComponent implements OnInit {
   ) { }
 
   loginForm: FormGroup;
+  show: boolean = false;
 
   ngOnInit() {
     this.loginForm = this._fb.group({
-      phoneno: ['', Validators.required, Validators.pattern],
+      phoneno: ['', [Validators.required, Validators.pattern]],
       password: ['', Validators.required],
     });
 
@@ -33,10 +34,14 @@ export class NgxLoginComponent implements OnInit {
   }
 
   NumberOnly(event) {
-    if (event.key.length === 1 && ((event.which < 48 || event.which > 57) && (event.which < 96 || event.which > 105))) {
+    if(!(event.which >= 48 && event.which <= 57) && !(event.which >= 96 && event.which <= 105) && (event.which != 9 && event.which != 8 && event.which != 46 && event.which != 37 && event.which != 39)) {
       event.preventDefault();
     }
   }
+
+  password() {
+    this.show = !this.show;
+}
 
   login() {
     this._login.login(this.loginForm.value).subscribe(

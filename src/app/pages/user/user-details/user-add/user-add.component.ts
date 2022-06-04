@@ -27,7 +27,6 @@ export class UserAddComponent implements OnInit {
   ngOnInit() {
 
     this.userProfile.ViewRole().subscribe((data :any) => {
-      console.warn(data);
     })
 
     this.firstForm = this.fb.group({
@@ -163,7 +162,6 @@ export class UserAddComponent implements OnInit {
 
   passwordHide(event) {
     if (event == 'LABOR') {
-      // console.warn(event);
       this.password = false;
     } else {
       this.password = true;
@@ -174,19 +172,14 @@ export class UserAddComponent implements OnInit {
   }
 
   onFifthSubmit() {
-    console.warn(this.firstForm.value);
-    console.warn(this.PasswordForm.value);
-
     let b = this.secondForm.value.userQualificationData;
     for (let i = 0; i < this.secondForm.value.userQualificationData.length; i++) {
       if (b[i].examination != "" && b[i].universityBoard != "" && b[i].yearOfPassing != "") {
-        console.warn(b[i]);
       }
     }
 
 
     this.userProfile.CreateUserProfile(this.firstForm.value).subscribe((data1: any) => {
-      // alert('Data submited');
       let b = this.secondForm.value.userQualificationData;
       let c = this.thirdForm.value.userExperienceData;
       let d = this.fourthForm.value.familyDetails;
@@ -196,7 +189,6 @@ export class UserAddComponent implements OnInit {
       if (this.firstForm.value.roles[0] != 'LABOR') {
         this.userProfile.CreateUserPassword(this.PasswordForm.value).subscribe((data: any) => {
           this.userProfile.userPasswordAssign(data.id, data1.id).subscribe((data: any) => {
-            console.warn(data);
           });
         })
       }
@@ -206,7 +198,6 @@ export class UserAddComponent implements OnInit {
         if (b[i].examination != "" && b[i].universityBoard != "" && b[i].yearOfPassing != "") {
           this.userProfile.CreateUserQualification(b[i]).subscribe((data: any) => {
             this.userProfile.userQualificationAssign(data.id, data1.id).subscribe((data: any) => {
-              console.warn(b[i]);
             });
           });
         }
@@ -215,7 +206,6 @@ export class UserAddComponent implements OnInit {
         if (c[i].organization != "" && c[i].yearOfExperience != "" && c[i].position != "") {
           this.userProfile.CreateUserExperience(c[i]).subscribe((data: any) => {
             this.userProfile.userExperienceAssign(data.id, data1.id).subscribe((data: any) => {
-              console.warn(c[i]);
             });
           });
         }
@@ -224,7 +214,6 @@ export class UserAddComponent implements OnInit {
         if (d[i].name != "" && d[i].age != "" && d[i].relationship != "") {
           this.userProfile.CreateUserFamily(d[i]).subscribe((data: any) => {
             this.userProfile.userFamilyAssign(data.id, data1.id).subscribe((data: any) => {
-              console.warn(d[i]);
             });
           });
         }
