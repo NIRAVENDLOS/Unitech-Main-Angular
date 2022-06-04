@@ -84,7 +84,6 @@ export class ProductCategoryComponent implements OnInit {
 
     this.post.ViewCategory().subscribe((data) => {
       this.source = data.Data;
-      console.warn(data);
     });
   }
 

@@ -565,7 +565,6 @@ export class IssueComponent implements OnInit {
   onIssueFormSubmit() {
     let deptName = this.IssueForm.value.deptName;
     this.usageItemForm.get("deptName").setValue(deptName);
-    console.warn(this.IssueForm.value.machineName);
 
     if (deptName == "bloowroom") {
       this.usageItemForm.addControl(
@@ -654,7 +653,6 @@ export class IssueComponent implements OnInit {
     }
 
     this.post.CreateIssue(this.IssueForm.value).subscribe((data: any) => {
-      // console.warn(data.Data.issueId);
       this.usageItemForm
         .get("issuedItem")
         .get("issueId")
@@ -799,7 +797,6 @@ export class IssueComponent implements OnInit {
   }
 
   IndentCreate(dialog3: TemplateRef<any>) {
-    console.warn(this.statusChangeIssue);
     // this.total = null;
     this.tax = this.statusChangeIssue.storeItemModel.paytax;
     this.IndentForm.get("storeItem")
@@ -809,7 +806,6 @@ export class IssueComponent implements OnInit {
       .get("issueId")
       .setValue(this.statusChangeIssue.issueId);
     this.IndentForm.get("quantity").setValue(this.statusChangeIssue.quantity);
-    console.warn(this.IndentForm.value);
     this.NbDialogRef1.close();
     this.NbDialogRef3 = this.dialogService.open(dialog3, {
       closeOnBackdropClick: false,
@@ -817,7 +813,6 @@ export class IssueComponent implements OnInit {
   }
 
   taxToatal(event) {
-    console.warn(this.IndentForm.value.quantity);
     let price = event.target.value;
     let quantity = this.IndentForm.value.quantity;
     if (this.tax != null && price != null && quantity != null) {

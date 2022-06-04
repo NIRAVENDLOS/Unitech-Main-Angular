@@ -35,8 +35,6 @@ export class AddPurchaseComponent implements OnInit {
   }
 
   onPurchaseSubmit() {
-    // alert(this.purchase);
-    console.warn(this.purchase.value);
     this.purcharData.CreatePurchase(this.purchase.value).subscribe((data:any) => {
       alert("Date Submited Success Fully...");
       this.purchase.reset();

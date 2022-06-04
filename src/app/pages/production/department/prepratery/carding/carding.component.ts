@@ -229,7 +229,6 @@ export class CardingComponent implements OnInit {
     }, 1000);
     this.todayDate = this.dateService.addHours(this.time, -8);
     this.todayDate = this.dateService.addMinutes(this.todayDate, -20);
-    // console.warn(this.todayDate);
     let Date8a = new Date(this.datepipe.transform(this.todayDate, 'yyyy/MM/dd 00:00:00'));
     let Date2p = new Date(this.datepipe.transform(this.todayDate, 'yyyy/MM/dd 06:00:00'));
     let Date8p = new Date(this.datepipe.transform(this.todayDate, 'yyyy/MM/dd 12:00:00'));
@@ -536,7 +535,6 @@ export class CardingComponent implements OnInit {
   }
 
   onCardingParameterAoneSubmit() {
-    console.warn(this.cardingparameterAone);
     for (let i = 0; i < this.cardingparameterAone.value.parareading.length; i++) {
       let Mid = this.cardingparameterAone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursOne': this.cardingparameterAone.value.parareading[i].shift_a_sixHoursOne }
@@ -550,7 +548,6 @@ export class CardingComponent implements OnInit {
   }
 
   onCardingParameterAtwoSubmit() {
-    console.warn(this.cardingparameterAtwo.value);
     for (let i = 0; i < this.cardingparameterAtwo.value.parareading.length; i++) {
       let Mid = this.cardingparameterAtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursTwo': this.cardingparameterAtwo.value.parareading[i].shift_a_sixHoursTwo }

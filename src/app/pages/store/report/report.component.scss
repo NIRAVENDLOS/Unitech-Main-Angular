@@ -11,11 +11,11 @@
 .red {
   color: red;
 }
-:host /deep/ ng2-st-tbody-edit-delete {display: flex !important;
+:host ::ng-deep ng2-st-tbody-edit-delete {display: flex !important;
   height: 0 !important;
 }
 
-:host /deep/ ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
+:host ::ng-deep ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
   display: inline-block;
   width: 50px;
   text-align: center;
@@ -23,11 +23,11 @@
   text-decoration: none;
 }
 
-:host /deep/ ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom:hover {
+:host ::ng-deep ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom:hover {
   color: #ff3d71;
 }
 
-:host /deep/ .cell_right {
+:host ::ng-deep .cell_right {
 
   color: white;
   text-align: center;
@@ -36,7 +36,7 @@
   border-radius: 12%;
   }
 
-:host /deep/ .cell_right1 {
+:host ::ng-deep .cell_right1 {
   color: white;
   text-align: center;
   background-color: #16cb5f;

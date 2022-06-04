@@ -167,7 +167,6 @@ export class AddmachineComponent implements OnInit {
       this.allAlert('success', `${data.Data.name} Created !`, 'Successfully Create Bloowroom');
     },
     (error: Error) => {
-      console.warn(error);
       this.allAlert('danger', `Not Created !`, `something wrong`);
     });
   }
