@@ -236,14 +236,6 @@
       <nb-card-footer>
         <button
           class="cancel"
-          nbButton
-          status="danger"
-          (click)="NbDialogRef1.close()"
-        >
-          Close
-        </button>
-        <button
-          class="cancel"
           *ngIf="store"
           nbButton
           status="success"
@@ -289,7 +281,6 @@
         >
           Cancel
         </button>
-        <!-- <button class="cancel" nbButton status="primary" type="button">Reject</button> -->
       </nb-card-footer>
     </nb-card>
   </form>
@@ -371,14 +362,6 @@
       <nb-card-footer>
         <button
           class="cancel"
-          nbButton
-          status="danger"
-          (click)="NbDialogRef2.close()"
-        >
-          Close
-        </button>
-        <button
-          class="cancel"
           *ngIf="maintanance"
           nbButton
           status="primary"
@@ -422,7 +405,6 @@
               >{{ item.itemName }}
             </nb-option>
           </nb-select>
-          <!-- <input type="text" nbInput fullWidth id="quantity" [value]="item.itemId"  placeholder="quantity" formControlName="itemId"> -->
         </div>
 
         <div class="form-group">
@@ -472,9 +454,6 @@
       </div>
       </nb-card-body>
       <nb-card-footer>
-        <button class="cancel" nbButton status="danger" (click)="ref.close()">
-          Cancel
-        </button>
         <button nbButton status="success" type="submit">Submit</button>
       </nb-card-footer>
     </nb-card>

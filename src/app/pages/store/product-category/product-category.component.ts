@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { NbDialogService } from "@nebular/theme";
+import { NbDialogService, NbGlobalPhysicalPosition, NbToastrService } from "@nebular/theme";
 import { LoginService } from "../../../@service/auth/login.service";
 import { CategoryService } from "../../../@service/store/category.service";
 import { UserService } from "../../../@service/user/user.service";
@@ -63,7 +63,8 @@ export class ProductCategoryComponent implements OnInit {
     private dialogService: NbDialogService,
     private fb: FormBuilder,
     private post: CategoryService,
-    private _auth: LoginService
+    private _auth: LoginService,
+    private toastrService: NbToastrService
   ) {}
 
   ngOnInit(): void {
@@ -97,9 +98,27 @@ export class ProductCategoryComponent implements OnInit {
   onCategoryFormSubmit() {
     this.post.CreateCategory(this.CategoryForm.value).subscribe((data: any) => {
       this.CategoryForm.reset();
-      alert("category Done");
+      this.allAlert('success', `${data.Data.productName} Created !`, 'Successfully Create Category');
       this.NbDialogRef.close();
       this.ngOnInit();
+    }, 
+    (error: Error) => {
+      this.allAlert('danger', `Not Created !`, `something wrong`);
     });
+  }
+
+  allAlert(alertMsg, headMsg, msg) {
+    const config = {
+      status: alertMsg,
+      destroyByClick: true,
+      duration: 3000,
+      hasIcon: true,
+      position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+      preventDuplicates: false,
+    };
+    this.toastrService.show(
+      `${msg}`,
+      `${headMsg}`,
+      config);
   }
 }

@@ -1,9 +1,10 @@
 <div *ngIf="admin || store">
-  <button nbButton status="danger" (click)="addCategory(dialog)">
-    Add Product Category
-  </button>
-
   <nb-card>
+    <nb-card-header>Product Category
+      <button nbButton status="danger" class="right" (click)="addCategory(dialog)">
+        Add Product Category
+      </button>
+    </nb-card-header>
     <nb-card-body>
       <ng2-smart-table [settings]="settings" [source]="source">
       </ng2-smart-table>
@@ -14,7 +15,11 @@
 <ng-template #dialog let-ref="dialogRef">
   <form [formGroup]="CategoryForm" (ngSubmit)="onCategoryFormSubmit(dialog)">
     <nb-card>
-      <nb-card-header>Enter Product Category Name</nb-card-header>
+      <nb-card-header>Enter Product Category Name
+        <button type="button" (click)="NbDialogRef.close()" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+      </nb-card-header>
       <nb-card-body>
         <div class="form-group">
           <label for="name" class="label">Name</label>
@@ -36,9 +41,6 @@
         </div>
       </nb-card-body>
       <nb-card-footer>
-        <button class="cancel" nbButton status="danger" (click)="ref.close()">
-          Cancel
-        </button>
         <button
           nbButton
           status="success"

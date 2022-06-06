@@ -92,7 +92,6 @@
 
             </nb-card-body>
             <nb-card-footer>
-                <button class="cancel" nbButton status="danger" (click)="ref.close()">Cancel</button>
                 <button nbButton status="success" type="submit">Submit</button>
             </nb-card-footer>
         </nb-card>
@@ -119,7 +118,6 @@
                 </div>
             </nb-card-body>
             <nb-card-footer>
-                <button class="cancel" nbButton status="danger" (click)="NbDialogRef1.close()">Close</button>
                 <button class="cancel" nbButton status="success" (click)="indentOpen()" type="button"
                     [disabled]="IndentOpenForm.get('coments').invalid">Submit</button>
                 <button class="cancel" *ngIf="gm || admin" nbButton status="primary" (click)="indentReject()"
@@ -141,9 +139,6 @@
             </ng2-smart-table>
         </nb-card-body>
         <nb-card-footer>
-            <button class="cancel" nbButton status="danger" (click)="NbDialogRef2.close()">Close</button>
         </nb-card-footer>
-
     </nb-card>
-
 </ng-template>
