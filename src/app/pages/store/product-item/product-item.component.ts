@@ -485,6 +485,7 @@ export class ProductItemComponent implements OnInit {
     formData.append("file", this.UploadItemForm.value.file);
     this.postItem.ItemUpload(formData).subscribe(
       (data: any) => {
+        // alert("Excel upload");
       },
       (error: Error) => {
       }

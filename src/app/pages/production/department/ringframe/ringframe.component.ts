@@ -639,7 +639,6 @@ export class RingframeComponent implements OnInit {
         this.redingB4.push(data.Data[i].averageshift_b_HankFour);
         this.redingB5.push(data.Data[i].averageshift_b_HankFive);
         this.redingB6.push(data.Data[i].averageshift_b_HankSix);
-
       }
 
       if (this.admin && !this.MachineNotFounderror) {
@@ -783,7 +782,6 @@ export class RingframeComponent implements OnInit {
           },
         });
       }
-      
       if (data.Data.length <= 0) {
         this.qcokay = true;
         this.qcdataokay = false;

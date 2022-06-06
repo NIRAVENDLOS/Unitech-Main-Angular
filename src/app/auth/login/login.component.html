@@ -23,19 +23,20 @@
       <label class="label" for="input-password">Password:</label>
       <!-- <a class="forgot-password caption-2" routerLink="../request-password">Forgot Password?</a> -->
     </span>
-    <input nbInput fullWidth name="password" type="password" id="input-password" placeholder="Password"
+    <input nbInput fullWidth name="password" [type]="show ? 'text' : 'password'" id="input-password" placeholder="Password"
       fieldSize="large" formControlName="password"
       [status]="loginForm.get('password').touched ? (loginForm.get('password').invalid  ? 'danger' : 'success') : 'basic'">
+
     <p *ngIf="loginForm.get('password').errors?.required && loginForm.get('password').touched"
       class="caption status-danger">password is required!</p>
 
   </div>
 
   <div class="form-control-group accept-group">
-    <nb-checkbox name="rememberMe">Remember me</nb-checkbox>
+    <nb-checkbox name="rememberMe" (click)="password()">{{show ? 'Show' : 'Hide'}} Password </nb-checkbox>
   </div>
 
-  <button nbButton fullWidth status="primary" size="large"
+  <button nbButton fullWidth status="primary" size="large" type="submit"
     [disabled]="loginForm.get('password').errors || loginForm.get('phoneno').errors">
     Log In
   </button>

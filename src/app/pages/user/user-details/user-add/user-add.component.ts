@@ -171,7 +171,6 @@ export class UserAddComponent implements OnInit {
   }
 
   onFifthSubmit() {
-
     let b = this.secondForm.value.userQualificationData;
     for (let i = 0; i < this.secondForm.value.userQualificationData.length; i++) {
       if (b[i].examination != "" && b[i].universityBoard != "" && b[i].yearOfPassing != "") {
@@ -180,7 +179,6 @@ export class UserAddComponent implements OnInit {
 
 
     this.userProfile.CreateUserProfile(this.firstForm.value).subscribe((data1: any) => {
-      // alert('Data submited');
       let b = this.secondForm.value.userQualificationData;
       let c = this.thirdForm.value.userExperienceData;
       let d = this.fourthForm.value.familyDetails;

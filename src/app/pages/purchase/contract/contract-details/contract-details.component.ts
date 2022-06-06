@@ -99,6 +99,7 @@ export class ContractDetailsComponent implements OnInit {
   }
 
   contractView(event) {
+    // this.MainEvent = event;
     this.venderService.ViewVender().subscribe(data => {
       this.vender = data.Data;
     });
@@ -171,7 +172,6 @@ export class ContractDetailsComponent implements OnInit {
     return this.ContractForm.get('partyLotModels') as FormArray;
   }
   onFSimplingSubmit() {
-
   }
 
   downloadAsPDF(event) {

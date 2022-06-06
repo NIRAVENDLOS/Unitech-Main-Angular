@@ -7,12 +7,12 @@ export const HR_MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/dashboard',
     home: false,
   },
+  // {
+  //   title: 'FEATURES',
+  //   group: false,
+  // },
   {
-    title: 'FEATURES',
-    group: false,
-  },
-  {
-    title: 'Hr',
+    title: 'HR',
     icon: 'layout-outline',
     children: [
       {
