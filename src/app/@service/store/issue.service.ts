@@ -23,7 +23,7 @@ export class IssueService {
     return this.http.get(`${this.url}/api/v1/issue/status?status=${status}`);
   }
   ItemDateIssue(start: any,end: any, item:number): Observable<any> {
-    return this.http.get(`${this.url}/api/v1/issue/dbetween?start=${start}&end=${end}1&itemId=${item}`);
+    return this.http.get(`${this.url}/api/v1/issue/dbetween?start=${start}&end=${end}&itemId=${item}`);
   }
   StatusUpdateIssue(issueId:number,issue:any): Observable<any> {
     return this.http.patch(`${this.url}/api/v1/issue/${issueId}`,issue);
