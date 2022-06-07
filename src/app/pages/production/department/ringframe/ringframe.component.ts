@@ -452,7 +452,7 @@ export class RingframeComponent implements OnInit {
       this.timeGet.ViewTime().subscribe((data: string) => {
         this.time = new Date(data);
       })
-    }, 1000);
+    }, 10000);
     this.todayDate = this.dateService.addHours(this.time, -8);
     this.todayDate = this.dateService.addMinutes(this.todayDate, -20);
     let Date8a = new Date(this.datepipe.transform(this.todayDate, 'yyyy/MM/dd 00:00:00'));
@@ -555,9 +555,9 @@ export class RingframeComponent implements OnInit {
 
     this.post.ViewAllRingframe().subscribe(data => {
       this.demo = data;
-      
+
       let a = this.demo.length;
-      if(a <= 0) {
+      if (a <= 0) {
         this.MachineNotFounderror = true;
       }
       for (let i = 0; i < a; i++) {
@@ -568,7 +568,7 @@ export class RingframeComponent implements OnInit {
     this.MachinePara.DateSingleRingframe(this.dateService.format(this.todayDate, 'yyyy-MM-dd')).subscribe(data => {
       this.source = data.Data;
       let a = data.Data.length;
-      if(a <= 0) {
+      if (a <= 0) {
         this.QcMachineParameterNotSetError = true;
       }
       for (let i = 0; i < a; i++) {
@@ -929,9 +929,9 @@ export class RingframeComponent implements OnInit {
   }
 
   NumberOnly(event) {
-    if(!(event.which >= 48 && event.which <= 57) && !(event.which >= 96 && event.which <= 105) && (event.which != 110 && event.which != 190 && event.which != 8)) {
+    if (!(event.which >= 48 && event.which <= 57) && !(event.which >= 96 && event.which <= 105) && (event.which != 110 && event.which != 190 && event.which != 8)) {
       event.preventDefault();
-    } 
+    }
   }
   onDateSingleSubmit() {
     let date = this.SingleDate.value.date;

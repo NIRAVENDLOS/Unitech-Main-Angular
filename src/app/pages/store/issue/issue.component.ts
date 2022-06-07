@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { NbDialogService } from "@nebular/theme";
+import { NbDialogService, NbGlobalPhysicalPosition, NbToastrService } from "@nebular/theme";
 import { concat } from "rxjs";
 import { LoginService } from "../../../@service/auth/login.service";
 import { MachineService } from "../../../@service/machine/machine.service";
@@ -389,8 +389,9 @@ export class IssueComponent implements OnInit {
     private postIndent: IndentService,
     private postItem: ItemService,
     private postResponce: ResponceService,
-    private machineName: MachineService
-  ) {}
+    private machineName: MachineService,
+    private toastrService: NbToastrService
+  ) { }
 
   ngOnInit(): void {
     let role = this._auth.user.roles.find((x) => x);
@@ -405,27 +406,27 @@ export class IssueComponent implements OnInit {
       this.gm = true;
     }
 
-    this.postResponce.ViewResponce().subscribe((data: any) => {});
+    this.postResponce.ViewResponce().subscribe((data: any) => { });
 
     this.IssueForm = this.fb.group({
-      quantity: [null],
-      description: [null],
+      quantity: [null, Validators.required],
+      description: [null, Validators.required],
       isRaised: [false],
-      requiredDays: [null],
+      requiredDays: [null, Validators.required],
       storeItemModel: this.fb.group({
-        itemId: [null],
+        itemId: [null, Validators.required],
       }),
       emp: this.fb.group({
-        id: [role_id],
+        id: [role_id, Validators.required],
       }),
-      deptName: [null],
-      machineName: [null],
+      deptName: [null, Validators.required],
+      machineName: [null, Validators.required],
     });
     this.IssueOpenForm = this.fb.group({
-      quantity: [null],
+      quantity: [null, Validators.required],
       coments: [null, Validators.required],
       remarks: [null],
-      issueId: [null],
+      issueId: [null,Validators.required],
     });
 
     this.ResponceForm = this.fb.group({
@@ -444,16 +445,16 @@ export class IssueComponent implements OnInit {
 
     this.IndentForm = this.fb.group({
       storeItem: this.fb.group({
-        itemId: [null],
+        itemId: [null, Validators.required],
       }),
       employee: this.fb.group({
         id: [role_id],
       }),
       issue: this.fb.group({
-        issueId: [null],
+        issueId: [null, Validators.required],
       }),
-      quantity: [null],
-      estimatedPrice: [null],
+      quantity: [null, Validators.required],
+      estimatedPrice: [null, Validators.required],
     });
 
     this.ResponceFormIndent = this.fb.group({
@@ -502,6 +503,12 @@ export class IssueComponent implements OnInit {
     this.post.ViewIssueStatus("OPEN").subscribe((data) => {
       this.OPENIssueSource = data.Data;
     });
+  }
+
+  NumberOnly(event) {
+    if (!(event.which >= 48 && event.which <= 57) && !(event.which >= 96 && event.which <= 105) && (event.which != 9 && event.which != 8 && event.which != 190 && event.which != 46 && event.which != 37 && event.which != 39)) {
+      event.preventDefault();
+    }
   }
 
   chengeDepartmentName(event) {
@@ -560,6 +567,7 @@ export class IssueComponent implements OnInit {
   createIssue(dialog: TemplateRef<any>) {
     this.NbDialogRef = this.dialogService.open(dialog, {
       closeOnBackdropClick: false,
+      hasScroll: true
     });
   }
   onIssueFormSubmit() {
@@ -661,10 +669,15 @@ export class IssueComponent implements OnInit {
       this.post
         .CreateUsageItem(this.usageItemForm.value)
         .subscribe((data: any) => {
+          this.allAlert('success', `Issue Created !`, 'Successfully Create Issue');
           this.IssueForm.reset();
           this.NbDialogRef.close();
           this.ngOnInit();
+        }, (error: any) => {
+          this.allAlert('danger', `Not Created !`, `${error.error.message}`);
         });
+    }, (error: any) => {
+      this.allAlert('danger', `Not Created !`, `${error.error.message}`);
     });
   }
 
@@ -675,6 +688,7 @@ export class IssueComponent implements OnInit {
     this.IssueOpenForm.get("issueId").setValue(event.issueId);
     this.NbDialogRef1 = this.dialogService.open(dialog1, {
       closeOnBackdropClick: false,
+      hasScroll: true
     });
   }
 
@@ -685,6 +699,7 @@ export class IssueComponent implements OnInit {
     this.IssueOpenForm.get("issueId").setValue(event.issueId);
     this.NbDialogRef2 = this.dialogService.open(dialog2, {
       closeOnBackdropClick: false,
+      hasScroll: true
     });
   }
 
@@ -709,9 +724,14 @@ export class IssueComponent implements OnInit {
         this.postResponce
           .CreateResponce(this.ResponceForm.value)
           .subscribe((data: any) => {
+            this.allAlert('success', `Issue Approved !`, 'Successfully Issue Approved');
             this.NbDialogRef1.close();
             this.ngOnInit();
+          }, (error: any) => {
+            this.allAlert('danger', `Not Created !`, `${error.error.message}`);
           });
+      }, (error: any) => {
+        this.allAlert('danger', `Not Created !`, `${error.error.message}`);
       });
   }
 
@@ -736,9 +756,14 @@ export class IssueComponent implements OnInit {
         this.postResponce
           .CreateResponce(this.ResponceForm.value)
           .subscribe((data: any) => {
+            this.allAlert('success', `Issue Rejected !`, 'Successfully Issue Rejected');
             this.NbDialogRef1.close();
             this.ngOnInit();
+          }, (error: any) => {
+            this.allAlert('danger', `Not Created !`, `${error.error.message}`);
           });
+      }, (error: any) => {
+        this.allAlert('danger', `Not Created !`, `${error.error.message}`);
       });
   }
 
@@ -763,9 +788,14 @@ export class IssueComponent implements OnInit {
         this.postResponce
           .CreateResponce(this.ResponceForm.value)
           .subscribe((data: any) => {
+            this.allAlert('success', `Issue Canceled !`, 'Successfully Issue Canceled');
             this.NbDialogRef1.close();
             this.ngOnInit();
+          }, (error: any) => {
+            this.allAlert('danger', `Not Created !`, `${error.error.message}`);
           });
+      }, (error: any) => {
+        this.allAlert('danger', `Not Created !`, `${error.error.message}`);
       });
   }
 
@@ -790,9 +820,14 @@ export class IssueComponent implements OnInit {
         this.postResponce
           .CreateResponce(this.ResponceForm.value)
           .subscribe((data: any) => {
+            this.allAlert('success', `Issue Approved !`, 'Successfully Issue Approved');
             this.NbDialogRef2.close();
             this.ngOnInit();
+          }, (error: any) => {
+            this.allAlert('danger', `Not Created !`, `${error.error.message}`);
           });
+      }, (error: any) => {
+        this.allAlert('danger', `Not Created !`, `${error.error.message}`);
       });
   }
 
@@ -839,9 +874,29 @@ export class IssueComponent implements OnInit {
         this.postResponce
           .CreateResponce(this.ResponceFormIndent.value)
           .subscribe((data: any) => {
+            this.allAlert('success', `Indent Created !`, 'Successfully Indent Created');
             this.NbDialogRef3.close();
             this.ngOnInit();
+          }, (error: any) => {
+            this.allAlert('danger', `Not Created !`, `${error.error.message}`);
           });
+      }, (error: any) => {
+        this.allAlert('danger', `Not Created !`, `${error.error.message}`);
       });
+  }
+
+  allAlert(alertMsg, headMsg, msg) {
+    const config = {
+      status: alertMsg,
+      destroyByClick: true,
+      duration: 3000,
+      hasIcon: true,
+      position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+      preventDuplicates: false,
+    };
+    this.toastrService.show(
+      `${msg}`,
+      `${headMsg}`,
+      config);
   }
 }

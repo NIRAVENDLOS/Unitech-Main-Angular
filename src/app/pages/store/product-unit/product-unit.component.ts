@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NbDialogService } from '@nebular/theme';
+import { NbDialogService, NbGlobalPhysicalPosition, NbToastrService } from '@nebular/theme';
 import { LoginService } from '../../../@service/auth/login.service';
 import { UnitService } from '../../../@service/store/unit.service';
 
@@ -42,7 +42,7 @@ export class ProductUnitComponent implements OnInit {
     private fb: FormBuilder,
     private _auth: LoginService,
     private post: UnitService,
-
+    private toastrService: NbToastrService
   ) { }
 
   ngOnInit(): void {
@@ -79,10 +79,27 @@ export class ProductUnitComponent implements OnInit {
   onUnitFormSubmit() {
     this.post.CreateUnit(this.UnitForm.value).subscribe((data: any) => {
       this.UnitForm.reset();
-      alert('Unit Done');
+      this.allAlert('success', `${data.Data.unitName} Created !`, 'Successfully Create Unit');
       this.NbDialogRef.close();
       this.ngOnInit();
-    });
+    },
+      (error: Error) => {
+        this.allAlert('danger', `Not Created !`, `something wrong`);
+      });
   }
 
+  allAlert(alertMsg, headMsg, msg) {
+    const config = {
+      status: alertMsg,
+      destroyByClick: true,
+      duration: 3000,
+      hasIcon: true,
+      position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+      preventDuplicates: false,
+    };
+    this.toastrService.show(
+      `${msg}`,
+      `${headMsg}`,
+      config);
+  }
 }

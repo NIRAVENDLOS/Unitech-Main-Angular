@@ -94,7 +94,8 @@
   <div class="col-md-12" *ngIf="!QcMachineParameterNotSetError">
     <nb-card>
       <nb-card-header>{{todayDate | date: 'dd/MM/yyyy'}}
-        <button class="btn-float" *ngIf="shiftData || shiftData1" nbButton status="danger" (click)="addParameter(dialog)">Add Parameter</button>
+        <button class="btn-float" *ngIf="shiftData || shiftData1" nbButton status="danger"
+          (click)="addParameter(dialog)">Add Parameter</button>
       </nb-card-header>
       <nb-card-body>
         <ng2-smart-table [settings]="superviserViewData" [source]="source">
@@ -235,7 +236,7 @@
 </div>
 
 <ng-template #dialog let-ref="dialogRef">
-  <nb-card  class="scroll-bar">
+  <nb-card class="scroll-bar">
     <nb-card-header>
       <div *ngIf="shiftA1">8:00 AM To 10:00 AM</div>
       <div *ngIf="shiftA2">10:00 AM To 12:00 PM</div>
@@ -262,8 +263,8 @@
                   <div class="form-group">
                     <label for="parameter-{{i}}"
                       class="label">{{cost.controls.description._pendingValue.ringframe.name}}</label>
-                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}"
-                      placeholder="ENTER PARAMETER" formControlName="shift_a_twoHoursOne" (keydown)="NumberOnly($event)"
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" placeholder="ENTER PARAMETER"
+                      formControlName="shift_a_twoHoursOne" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_a_twoHoursOne == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_a_twoHoursOne"
                       [status]="cost.get('shift_a_twoHoursOne').touched ? (cost.get('shift_a_twoHoursOne').invalid  ? 'danger' : 'success') : 'basic'">
@@ -289,8 +290,8 @@
                   <div class="form-group">
                     <label for="parameter-{{i}}"
                       class="label">{{cost.controls.description._pendingValue.ringframe.name}}</label>
-                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" 
-                      placeholder="ENTER PARAMETER" formControlName="shift_a_twoHoursTwo" (keydown)="NumberOnly($event)"
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" placeholder="ENTER PARAMETER"
+                      formControlName="shift_a_twoHoursTwo" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_a_twoHoursTwo == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_a_twoHoursTwo"
                       [status]="cost.get('shift_a_twoHoursTwo').touched ? (cost.get('shift_a_twoHoursTwo').invalid  ? 'danger' : 'success') : 'basic'">
@@ -316,9 +317,8 @@
                   <div class="form-group">
                     <label for="parameter-{{i}}"
                       class="label">{{cost.controls.description._pendingValue.ringframe.name}}</label>
-                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" 
-                      placeholder="ENTER PARAMETER" formControlName="shift_a_twoHoursThree"
-                      (keydown)="NumberOnly($event)"
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" placeholder="ENTER PARAMETER"
+                      formControlName="shift_a_twoHoursThree" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_a_twoHoursThree == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_a_twoHoursThree"
                       [status]="cost.get('shift_a_twoHoursThree').touched ? (cost.get('shift_a_twoHoursThree').invalid  ? 'danger' : 'success') : 'basic'">
@@ -344,9 +344,8 @@
                   <div class="form-group">
                     <label for="parameter-{{i}}"
                       class="label">{{cost.controls.description._pendingValue.ringframe.name}}</label>
-                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" 
-                      placeholder="ENTER PARAMETER" formControlName="shift_a_twoHoursFour"
-                      (keydown)="NumberOnly($event)"
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" placeholder="ENTER PARAMETER"
+                      formControlName="shift_a_twoHoursFour" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_a_twoHoursFour == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_a_twoHoursFour"
                       [status]="cost.get('shift_a_twoHoursFour').touched ? (cost.get('shift_a_twoHoursFour').invalid  ? 'danger' : 'success') : 'basic'">
@@ -372,9 +371,8 @@
                   <div class="form-group">
                     <label for="parameter-{{i}}"
                       class="label">{{cost.controls.description._pendingValue.ringframe.name}}</label>
-                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" 
-                      placeholder="ENTER PARAMETER" formControlName="shift_a_twoHoursFive"
-                      (keydown)="NumberOnly($event)"
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" placeholder="ENTER PARAMETER"
+                      formControlName="shift_a_twoHoursFive" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_a_twoHoursFive == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_a_twoHoursFive"
                       [status]="cost.get('shift_a_twoHoursFive').touched ? (cost.get('shift_a_twoHoursFive').invalid  ? 'danger' : 'success') : 'basic'">
@@ -400,8 +398,8 @@
                   <div class="form-group">
                     <label for="parameter-{{i}}"
                       class="label">{{cost.controls.description._pendingValue.ringframe.name}}</label>
-                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" 
-                      placeholder="ENTER PARAMETER" formControlName="shift_a_twoHoursSix" (keydown)="NumberOnly($event)"
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" placeholder="ENTER PARAMETER"
+                      formControlName="shift_a_twoHoursSix" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_a_twoHoursSix == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_a_twoHoursSix"
                       [status]="cost.get('shift_a_twoHoursSix').touched ? (cost.get('shift_a_twoHoursSix').invalid  ? 'danger' : 'success') : 'basic'">
@@ -427,8 +425,8 @@
                   <div class="form-group">
                     <label for="parameter-{{i}}"
                       class="label">{{cost.controls.description._pendingValue.ringframe.name}}</label>
-                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" 
-                      placeholder="ENTER PARAMETER" formControlName="shift_b_twoHoursOne" (keydown)="NumberOnly($event)"
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" placeholder="ENTER PARAMETER"
+                      formControlName="shift_b_twoHoursOne" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_b_twoHoursOne == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_b_twoHoursOne"
                       [status]="cost.get('shift_b_twoHoursOne').touched ? (cost.get('shift_b_twoHoursOne').invalid  ? 'danger' : 'success') : 'basic'">
@@ -454,8 +452,8 @@
                   <div class="form-group">
                     <label for="parameter-{{i}}"
                       class="label">{{cost.controls.description._pendingValue.ringframe.name}}</label>
-                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" 
-                      placeholder="ENTER PARAMETER" formControlName="shift_b_twoHoursTwo" (keydown)="NumberOnly($event)"
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" placeholder="ENTER PARAMETER"
+                      formControlName="shift_b_twoHoursTwo" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_b_twoHoursTwo == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_b_twoHoursTwo"
                       [status]="cost.get('shift_b_twoHoursTwo').touched ? (cost.get('shift_b_twoHoursTwo').invalid  ? 'danger' : 'success') : 'basic'">
@@ -481,9 +479,8 @@
                   <div class="form-group">
                     <label for="parameter-{{i}}"
                       class="label">{{cost.controls.description._pendingValue.ringframe.name}}</label>
-                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" 
-                      placeholder="ENTER PARAMETER" formControlName="shift_b_twoHoursThree"
-                      (keydown)="NumberOnly($event)"
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" placeholder="ENTER PARAMETER"
+                      formControlName="shift_b_twoHoursThree" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_b_twoHoursThree == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_b_twoHoursThree"
                       [status]="cost.get('shift_b_twoHoursThree').touched ? (cost.get('shift_b_twoHoursThree').invalid  ? 'danger' : 'success') : 'basic'">
@@ -509,9 +506,8 @@
                   <div class="form-group">
                     <label for="parameter-{{i}}"
                       class="label">{{cost.controls.description._pendingValue.ringframe.name}}</label>
-                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" 
-                      placeholder="ENTER PARAMETER" formControlName="shift_b_twoHoursFour"
-                      (keydown)="NumberOnly($event)"
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" placeholder="ENTER PARAMETER"
+                      formControlName="shift_b_twoHoursFour" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_b_twoHoursFour == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_b_twoHoursFour"
                       [status]="cost.get('shift_b_twoHoursFour').touched ? (cost.get('shift_b_twoHoursFour').invalid  ? 'danger' : 'success') : 'basic'">
@@ -537,9 +533,8 @@
                   <div class="form-group">
                     <label for="parameter-{{i}}"
                       class="label">{{cost.controls.description._pendingValue.ringframe.name}}</label>
-                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" 
-                      placeholder="ENTER PARAMETER" formControlName="shift_b_twoHoursFive"
-                      (keydown)="NumberOnly($event)"
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" placeholder="ENTER PARAMETER"
+                      formControlName="shift_b_twoHoursFive" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_b_twoHoursFive == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_b_twoHoursFive"
                       [status]="cost.get('shift_b_twoHoursFive').touched ? (cost.get('shift_b_twoHoursFive').invalid  ? 'danger' : 'success') : 'basic'">
@@ -565,8 +560,8 @@
                   <div class="form-group">
                     <label for="parameter-{{i}}"
                       class="label">{{cost.controls.description._pendingValue.ringframe.name}}</label>
-                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" 
-                      placeholder="ENTER PARAMETER" formControlName="shift_b_twoHoursSix" (keydown)="NumberOnly($event)"
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" placeholder="ENTER PARAMETER"
+                      formControlName="shift_b_twoHoursSix" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_b_twoHoursSix == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_b_twoHoursSix"
                       [status]="cost.get('shift_b_twoHoursSix').touched ? (cost.get('shift_b_twoHoursSix').invalid  ? 'danger' : 'success') : 'basic'">

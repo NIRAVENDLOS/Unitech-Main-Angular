@@ -166,7 +166,7 @@ export class AddmachineComponent implements OnInit {
       this.bloowroom.reset();
       this.allAlert('success', `${data.Data.name} Created !`, 'Successfully Create Bloowroom');
     },
-    (error: Error) => {
+    (error: any) => {
       this.allAlert('danger', `Not Created !`, `something wrong`);
     });
   }
@@ -175,7 +175,7 @@ export class AddmachineComponent implements OnInit {
       this.carding.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Carding');
     },
-    (error: Error) => {
+    (error: any) => {
       this.allAlert('danger', `Not Created !`, `something wrong`);
     });
   }
@@ -184,7 +184,7 @@ export class AddmachineComponent implements OnInit {
       this.drawframes.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Drawframes');
     },
-    (error: Error) => {
+    (error: any) => {
       this.allAlert('danger', `Not Created !`, `something wrong`);
     });
   }
@@ -193,7 +193,7 @@ export class AddmachineComponent implements OnInit {
       this.finisher.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Finisher');
     },
-    (error: Error) => {
+    (error: any) => {
       this.allAlert('danger', `Not Created !`, `something wrong`);
     });
   }
@@ -202,7 +202,7 @@ export class AddmachineComponent implements OnInit {
       this.simplex.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Simplex');
     },
-    (error: Error) => {
+    (error: any) => {
       this.allAlert('danger', `Not Created !`, `something wrong`);
     });
   }
@@ -211,7 +211,7 @@ export class AddmachineComponent implements OnInit {
       this.ringframe.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Ringframes');
     },
-    (error: Error) => {
+    (error: any) => {
       this.allAlert('danger', `Not Created !`, `something wrong`);
     });
   }
@@ -220,7 +220,7 @@ export class AddmachineComponent implements OnInit {
       this.winding.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Winding');
     },
-    (error: Error) => {
+    (error: any) => {
       this.allAlert('danger', `Not Created !`, `something wrong`);
     });
   }
@@ -229,7 +229,7 @@ export class AddmachineComponent implements OnInit {
       this.packing.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Packing');
     },
-    (error: Error) => {
+    (error: any) => {
       this.allAlert('danger', `Not Created !`, `something wrong`);
     });
   }
@@ -238,7 +238,7 @@ export class AddmachineComponent implements OnInit {
       this.utility.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Utility');
     },
-    (error: Error) => {
+    (error: any) => {
       this.allAlert('danger', `Not Created !`, `something wrong`);
     });
   }
@@ -247,7 +247,7 @@ export class AddmachineComponent implements OnInit {
       this.wasteroom.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Wasteroom');
     },
-    (error: Error) => {
+    (error: any) => {
       this.allAlert('danger', `Not Created !`, `something wrong`);
     });
   }
@@ -256,7 +256,7 @@ export class AddmachineComponent implements OnInit {
       this.combers.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Combers');
     },
-    (error: Error) => {
+    (error: any) => {
       this.allAlert('danger', `Not Created !`, `something wrong`);
     });
   }
@@ -265,7 +265,7 @@ export class AddmachineComponent implements OnInit {
       this.lapformer.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Lapformer');
     },
-    (error: Error) => {
+    (error: any) => {
       this.allAlert('danger', `Not Created !`, `something wrong`);
     });
   }

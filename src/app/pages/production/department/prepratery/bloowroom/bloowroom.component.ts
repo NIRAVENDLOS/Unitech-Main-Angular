@@ -235,7 +235,7 @@ export class BloowroomComponent implements OnInit {
       this.timeGet.ViewTime().subscribe((data: string) => {
         this.time = new Date(data);
       })
-    }, 1000);
+    }, 10000);
 
     this.todayDate = this.dateService.addHours(this.time, -8);
     this.todayDate = this.dateService.addMinutes(this.todayDate, -20);

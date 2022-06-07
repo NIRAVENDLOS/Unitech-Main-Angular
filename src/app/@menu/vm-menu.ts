@@ -15,7 +15,10 @@ export const VM_MENU_ITEMS: NbMenuItem[] = [
     title: 'Store',
     icon: 'browser-outline',
     children: [
-
+      {
+        title: 'Product Item',
+        link: '/pages/store/item',
+      },
       {
         title: 'Indent',
         link: '/pages/store/indent',

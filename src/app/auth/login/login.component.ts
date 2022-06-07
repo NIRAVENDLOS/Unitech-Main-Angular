@@ -34,14 +34,14 @@ export class NgxLoginComponent implements OnInit {
   }
 
   NumberOnly(event) {
-    if(!(event.which >= 48 && event.which <= 57) && !(event.which >= 96 && event.which <= 105) && (event.which != 9 && event.which != 8 && event.which != 46 && event.which != 37 && event.which != 39)) {
+    if (!(event.which >= 48 && event.which <= 57) && !(event.which >= 96 && event.which <= 105) && (event.which != 9 && event.which != 8 && event.which != 46 && event.which != 37 && event.which != 39)) {
       event.preventDefault();
     }
   }
 
   password() {
     this.show = !this.show;
-}
+  }
 
   login() {
     this._login.login(this.loginForm.value).subscribe(
@@ -50,7 +50,7 @@ export class NgxLoginComponent implements OnInit {
         // location.reload();
         this._router.navigate(['pages']);
       },
-      (error: Error) => {
+      (error: any) => {
         this.showToast('danger');
       }
     )

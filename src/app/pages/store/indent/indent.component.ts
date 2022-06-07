@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NbDialogService } from '@nebular/theme';
+import { NbDialogService, NbGlobalPhysicalPosition, NbToastrService } from '@nebular/theme';
 import { LoginService } from '../../../@service/auth/login.service';
 import { IndentService } from '../../../@service/store/indent.service';
 import { ItemService } from '../../../@service/store/item.service';
@@ -26,6 +26,7 @@ export class IndentComponent implements OnInit {
   IndentForm: FormGroup;
   IndentOpenForm: FormGroup;
   ResponceForm: FormGroup;
+  statuschange: any;
   item: any;
 
   tax: any;
@@ -606,7 +607,8 @@ export class IndentComponent implements OnInit {
     private fb: FormBuilder,
     private post: IndentService,
     private postItem: ItemService,
-    private postResponce: ResponceService
+    private postResponce: ResponceService,
+    private toastrService: NbToastrService
   ) { }
 
   ngOnInit(): void {
@@ -626,16 +628,16 @@ export class IndentComponent implements OnInit {
 
     this.IndentForm = this.fb.group({
       storeItem: this.fb.group({
-        itemId: [null]
+        itemId: [null, Validators.required]
       }),
       employee: this.fb.group({
-        id: [role_id]
+        id: [role_id, Validators.required]
       }),
       issueItem: this.fb.group({
         issueId: [null]
       }),
-      quantity: [null],
-      estimatedPrice: [null]
+      quantity: [null, Validators.required],
+      estimatedPrice: [null, Validators.required]
     })
 
     this.ResponceForm = this.fb.group({
@@ -653,10 +655,10 @@ export class IndentComponent implements OnInit {
     })
 
     this.IndentOpenForm = this.fb.group({
-      quantity: [null],
+      quantity: [null, Validators.required],
       coments: [null, Validators.required],
       remarks: [null],
-      indentId: [null]
+      indentId: [null, Validators.required]
     })
 
     this.postItem.ViewItem().subscribe(data => {
@@ -680,7 +682,12 @@ export class IndentComponent implements OnInit {
     this.post.ViewIndentStatus('DONE').subscribe(data => {
       this.DONEIndentSource = data.Data;
     });
-
+  }
+  
+  NumberOnly(event) {
+    if (!(event.which >= 48 && event.which <= 57) && !(event.which >= 96 && event.which <= 105) && (event.which != 9 && event.which != 8 && event.which != 190 && event.which != 46 && event.which != 37 && event.which != 39)) {
+      event.preventDefault();
+    }
   }
 
   createIndent(dialog: TemplateRef<any>) {
@@ -704,7 +711,7 @@ export class IndentComponent implements OnInit {
   taxToatal(event) {
     let price = event.target.value;
     let quantity = this.IndentForm.value.quantity;
-    if(this.tax != null && price != null && quantity != null) {
+    if (this.tax != null && price != null && quantity != null) {
       this.basicAmmount = quantity * price;
       this.total = (quantity * price * this.tax / 100) + quantity * price;
     }
@@ -712,7 +719,7 @@ export class IndentComponent implements OnInit {
   taxToatalQantity(event) {
     let price = this.IndentForm.value.estimatedPrice;
     let quantity = event.target.value;
-    if(this.tax != null && price != null && quantity != null) {
+    if (this.tax != null && price != null && quantity != null) {
       this.basicAmmount = quantity * price;
       this.total = (quantity * price * this.tax / 100) + quantity * price;
     }
@@ -720,18 +727,24 @@ export class IndentComponent implements OnInit {
 
   onIndentFormSubmit() {
     this.post.CreateIndent(this.IndentForm.value).subscribe((data: any) => {
-      
+
       this.ResponceForm.get('coments').setValue("create indent");
       this.ResponceForm.get('remarks').setValue("create indent");
       this.ResponceForm.get('pdiId').setValue(data.Data.indentId);
       this.postResponce.CreateResponce(this.ResponceForm.value).subscribe((data: any) => {
+        this.allAlert('success', `Indent Created !`, 'Successfully Create Indent');
         this.NbDialogRef.close();
         this.ngOnInit();
+      }, (error: any) => {
+        this.allAlert('danger', `Not Created !`, `${error.error.message}`);
       })
+    }, (error: any) => {
+      this.allAlert('danger', `Not Created !`, `${error.error.message}`);
     })
   }
 
-  onChangeIndentStatus(event,dialog) {
+  onChangeIndentStatus(event, dialog) {
+    this.statuschange = event;
     this.IndentOpenForm.get('indentId').setValue(event.indentId);
     this.NbDialogRef1 = this.dialogService.open(
       dialog,
@@ -740,7 +753,7 @@ export class IndentComponent implements OnInit {
       });
   }
 
-  onChangeIndentViewStatus(event,dialog) {
+  onChangeIndentViewStatus(event, dialog) {
     this.postResponce.ViewByStatusResponce('INDENT', event.indentId).subscribe((data: any) => {
       this.ResponceSource = data.Data;
     })
@@ -757,32 +770,37 @@ export class IndentComponent implements OnInit {
     this.ResponceForm.get('pdiId').setValue(this.IndentOpenForm.value.indentId);
 
     let Opendata = null;
-    if(this.admin) {
+    if (this.admin) {
       Opendata = {
         'indentStatus': 'ACCOUNT'
       }
       this.ResponceForm.get('issueStatus').setValue("ADMIN");
-    } 
-    else if(this.gm) {
+    }
+    else if (this.gm) {
       Opendata = {
         'indentStatus': 'ADMIN'
       }
       this.ResponceForm.get('issueStatus').setValue("GM");
-    } 
-    else if(this.account) {
+    }
+    else if (this.account) {
       Opendata = {
         'indentStatus': 'DONE'
       }
       this.ResponceForm.get('issueStatus').setValue("ACCOUNT");
-    } 
+    }
 
     this.post.StatusUpdateIndent(this.IndentOpenForm.value.indentId, Opendata).subscribe((data: any) => {
       this.postResponce.CreateResponce(this.ResponceForm.value).subscribe((data: any) => {
+        this.allAlert('success', `Indent Approved !`, 'Successfully Indent Approved');
         this.NbDialogRef1.close();
         this.ngOnInit();
+      }, (error: any) => {
+        this.allAlert('danger', `Not Created !`, `${error.error.message}`);
       })
+    }, (error: any) => {
+      this.allAlert('danger', `Not Created !`, `${error.error.message}`);
     });
-}
+  }
 
   indentReject() {
     this.ResponceForm.get('coments').setValue(this.IndentOpenForm.value.coments);
@@ -790,24 +808,45 @@ export class IndentComponent implements OnInit {
     this.ResponceForm.get('pdiId').setValue(this.IndentOpenForm.value.indentId);
 
     let Opendata = null;
-    if(this.admin) {
+    if (this.admin) {
       Opendata = {
         'indentStatus': 'REJECT'
       }
       this.ResponceForm.get('issueStatus').setValue("ADMIN");
-    } 
-    else if(this.gm) {
+    }
+    else if (this.gm) {
       Opendata = {
         'indentStatus': 'REJECT'
       }
       this.ResponceForm.get('issueStatus').setValue("GM");
-    } 
+    }
+
     this.post.StatusUpdateIndent(this.IndentOpenForm.value.indentId, Opendata).subscribe((data: any) => {
       this.postResponce.CreateResponce(this.ResponceForm.value).subscribe((data: any) => {
+        this.allAlert('success', `Indent Rejected !`, 'Successfully Indent Rejected');
         this.NbDialogRef1.close();
         this.ngOnInit();
+      }, (error: any) => {
+        this.allAlert('danger', `Not Created !`, `${error.error.message}`);
       })
+    }, (error: any) => {
+      this.allAlert('danger', `Not Created !`, `${error.error.message}`);
     });
+  }
+
+  allAlert(alertMsg, headMsg, msg) {
+    const config = {
+      status: alertMsg,
+      destroyByClick: true,
+      duration: 3000,
+      hasIcon: true,
+      position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+      preventDuplicates: false,
+    };
+    this.toastrService.show(
+      `${msg}`,
+      `${headMsg}`,
+      config);
   }
 }
 
