@@ -1,6 +1,8 @@
+import { DatePipe } from "@angular/common";
 import { identifierModuleUrl } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { NbDateService } from "@nebular/theme";
 import { LoginService } from "../../../@service/auth/login.service";
 import { MachineService } from "../../../@service/machine/machine.service";
 import { IssueService } from "../../../@service/store/issue.service";
@@ -139,8 +141,8 @@ export class ReportComponent implements OnInit {
     private fb: FormBuilder,
     private _auth: LoginService,
     private machineName: MachineService,
-    private postItem: ItemService
-  ) {}
+    private postItem: ItemService,
+  ) { }
 
   ngOnInit() {
     this.IndentForm = this.fb.group({
@@ -155,13 +157,17 @@ export class ReportComponent implements OnInit {
     this.TwoDateItem = this.fb.group({
       itemId: [null, Validators.required],
       start: [null, Validators.required],
-      end: [null, Validators.required],
+      end: [null, [Validators.required, Validators.max]],
     });
     this.post.ViewUsageItem().subscribe((data) => {
     });
     this.postItem.ViewItem().subscribe((data: any) => {
       this.item = data.Data;
     });
+  }
+
+  getToday(): string {
+    return new Date().toISOString().split('T')[0];
   }
 
   chengeDepartmentName(event) {

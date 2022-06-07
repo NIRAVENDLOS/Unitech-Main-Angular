@@ -243,7 +243,7 @@ export class CombersComponent implements OnInit {
       this.timeGet.ViewTime().subscribe((data: string) => {
         this.time = new Date(data);
       })
-    }, 1000);
+    }, 10000);
     this.todayDate = this.dateService.addHours(this.time, -8);
     let Date8a = new Date(this.datepipe.transform(this.todayDate, 'yyyy/MM/dd 00:00:00'));
     let Date2p = new Date(this.datepipe.transform(this.todayDate, 'yyyy/MM/dd 06:00:00'));

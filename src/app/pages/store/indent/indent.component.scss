@@ -3,7 +3,10 @@
 .cancel {
   margin: 0.5rem;
 }
-
+.scroll-bar {
+  max-height: 100%;
+  overflow-y: hidden;
+}
 .red {
   color: red;
 }

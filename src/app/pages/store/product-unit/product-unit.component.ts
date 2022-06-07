@@ -82,11 +82,11 @@ export class ProductUnitComponent implements OnInit {
       this.allAlert('success', `${data.Data.unitName} Created !`, 'Successfully Create Unit');
       this.NbDialogRef.close();
       this.ngOnInit();
-    }, 
-    (error: Error) => {
-      console.warn(error);
-      this.allAlert('danger', `Not Created !`, `something wrong`);
-    });
+    },
+      (error: Error) => {
+        console.warn(error);
+        this.allAlert('danger', `Not Created !`, `something wrong`);
+      });
   }
 
   allAlert(alertMsg, headMsg, msg) {

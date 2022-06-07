@@ -6,7 +6,7 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
-import { NbDialogService } from "@nebular/theme";
+import { NbDialogService, NbGlobalPhysicalPosition, NbToastrService } from "@nebular/theme";
 import { Subscription } from "rxjs";
 import { finalize } from "rxjs/operators";
 import { LoginService } from "../../../@service/auth/login.service";
@@ -183,8 +183,9 @@ export class ProductItemComponent implements OnInit {
     private postUnit: UnitService,
     private postItem: ItemService,
     private http: HttpClient,
-    private machineName: MachineService
-  ) {}
+    private machineName: MachineService,
+    private toastrService: NbToastrService
+  ) { }
 
   ngOnInit() {
     let role = this._auth.user.roles.find((x) => x);
@@ -267,8 +268,11 @@ export class ProductItemComponent implements OnInit {
 
   onItemFormSubmit() {
     this.postItem.CreateItem(this.ItemForm.value).subscribe((data: any) => {
+      this.allAlert('success', `${data.Data.itemName} Created !`, 'Successfully Create Item');
       this.ItemForm.reset();
       this.ngOnInit();
+    }, (error: any) => {
+      this.allAlert('danger', `Not Created !`, `${error.error.message}`);
     });
   }
 
@@ -280,11 +284,6 @@ export class ProductItemComponent implements OnInit {
   }
 
   onIssueFormSubmit() {
-    // this.post.CreateIssue(this.IssueForm.value).subscribe((data: any) => {
-    //   this.IssueForm.reset();
-    //   this.NbDialogRef.close();
-    //   this.ngOnInit();
-    // })
 
     let deptName = this.IssueForm.value.deptName;
     this.usageItemForm.get("deptName").setValue(deptName);
@@ -384,10 +383,15 @@ export class ProductItemComponent implements OnInit {
       this.post
         .CreateUsageItem(this.usageItemForm.value)
         .subscribe((data: any) => {
+          this.allAlert('success', `Issue Created !`, 'Successfully Create Issue');
           this.IssueForm.reset();
           this.NbDialogRef.close();
           this.ngOnInit();
+        }, (error: any) => {
+          this.allAlert('danger', `Not Created !`, `${error.error.message}`);
         });
+    }, (error: any) => {
+      this.allAlert('danger', `Not Created !`, `${error.error.message}`);
     });
   }
 
@@ -485,10 +489,26 @@ export class ProductItemComponent implements OnInit {
     formData.append("file", this.UploadItemForm.value.file);
     this.postItem.ItemUpload(formData).subscribe(
       (data: any) => {
-        // alert("Excel upload");
+        this.allAlert('success', `File Upload !`, 'Successfully Upload File');
       },
-      (error: Error) => {
+      (error: any) => {
+        this.allAlert('danger', `Not Created !`, `${error.error.message}`);
       }
     );
+  }
+
+  allAlert(alertMsg, headMsg, msg) {
+    const config = {
+      status: alertMsg,
+      destroyByClick: true,
+      duration: 3000,
+      hasIcon: true,
+      position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+      preventDuplicates: false,
+    };
+    this.toastrService.show(
+      `${msg}`,
+      `${headMsg}`,
+      config);
   }
 }

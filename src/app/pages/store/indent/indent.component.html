@@ -51,17 +51,19 @@
 </nb-card>
 
 <ng-template #dialog let-ref="dialogRef">
-    <form [formGroup]="IndentForm" (ngSubmit)="onIndentFormSubmit()">
-        <nb-card>
-            <nb-card-header>Create Indent
-                <button type="button" (click)="ref.close()" class="close" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </nb-card-header>
-            <nb-card-body>
+
+    <nb-card class="scroll-bar">
+        <nb-card-header>Create Indent
+            <button type="button" (click)="ref.close()" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </nb-card-header>
+        <nb-card-body>
+            <form [formGroup]="IndentForm" (ngSubmit)="onIndentFormSubmit()">
                 <div class="form-group" formGroupName="storeItem">
                     <label for="Select_Item" class="label">Select Item</label>
-                    <nb-select placeholder="Select Product Item" fullWidth formControlName="itemId" (ngModelChange)="ItemPriceTotal($event)">
+                    <nb-select placeholder="Select Product Item" fullWidth formControlName="itemId"
+                        (ngModelChange)="ItemPriceTotal($event)">
                         <nb-option *ngFor="let item of item" value="{{item.itemId}}">{{item.itemName}}
                         </nb-option>
                     </nb-select>
@@ -69,13 +71,14 @@
 
                 <div class="form-group">
                     <label for="quantity" class="label">Quantity</label>
-                    <input type="tel" nbInput fullWidth id="quantity" placeholder="quantity" formControlName="quantity" (keyup)="taxToatalQantity($event)">
+                    <input type="tel" nbInput fullWidth id="quantity" placeholder="quantity" formControlName="quantity"
+                        (keyup)="taxToatalQantity($event)">
                 </div>
 
                 <div class="form-group">
                     <label for="estimatedPrice" class="label">Estimated Unit Price</label>
-                    <input type="tel" nbInput fullWidth id="estimatedPrice" placeholder="Estimated Unit Price" (keyup)="taxToatal($event)"
-                        formControlName="estimatedPrice">
+                    <input type="tel" nbInput fullWidth id="estimatedPrice" placeholder="Estimated Unit Price"
+                        (keyup)="taxToatal($event)" formControlName="estimatedPrice">
                 </div>
                 <div class="form-group">
                     <label for="tex" class="label">Tax %</label>
@@ -83,31 +86,30 @@
                 </div>
                 <div class="form-group">
                     <label for="basicAmmount" class="label">Basic Ammount</label>
-                    <input type="tel" nbInput readonly fullWidth id="basicAmmount" placeholder="Basic Ammount" value="{{basicAmmount}}">
+                    <input type="tel" nbInput readonly fullWidth id="basicAmmount" placeholder="Basic Ammount"
+                        value="{{basicAmmount}}">
                 </div>
                 <div class="form-group">
                     <label for="total" class="label">Total Ammount</label>
-                    <input type="tel" nbInput readonly fullWidth id="total" placeholder="Total Ammount" value="{{total}}">
+                    <input type="tel" nbInput readonly fullWidth id="total" placeholder="Total Ammount"
+                        value="{{total}}">
                 </div>
-
-            </nb-card-body>
-            <nb-card-footer>
                 <button nbButton status="success" type="submit">Submit</button>
-            </nb-card-footer>
-        </nb-card>
-    </form>
+            </form>
+        </nb-card-body>
+    </nb-card>
 </ng-template>
 
 <ng-template #dialog1 let-ref="dialogRef1">
-    <form [formGroup]="IndentOpenForm">
-        <nb-card>
-            <nb-card-header>
-                <button type="button" (click)="NbDialogRef1.close()" class="close" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </nb-card-header>
-            <nb-card-body>
 
+    <nb-card class="scroll-bar">
+        <nb-card-header>
+            <button type="button" (click)="NbDialogRef1.close()" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </nb-card-header>
+        <nb-card-body>
+            <form [formGroup]="IndentOpenForm">
                 <div class="form-group">
                     <label for="coments" class="label">Comments</label>
                     <input type="tel" nbInput fullWidth id="coments" placeholder="coments" formControlName="coments">
@@ -116,19 +118,17 @@
                     <label for="remarks" class="label">Remarks</label>
                     <textarea nbInput fullWidth placeholder="remarks" formControlName="remarks"></textarea>
                 </div>
-            </nb-card-body>
-            <nb-card-footer>
                 <button class="cancel" nbButton status="success" (click)="indentOpen()" type="button"
-                    [disabled]="IndentOpenForm.get('coments').invalid">Submit</button>
+                    [disabled]="IndentOpenForm.get('coments').invalid">Approve</button>
                 <button class="cancel" *ngIf="gm || admin" nbButton status="primary" (click)="indentReject()"
                     type="button" [disabled]="IndentOpenForm.get('coments').invalid">Reject</button>
-            </nb-card-footer>
-        </nb-card>
-    </form>
+            </form>
+        </nb-card-body>
+    </nb-card>
 </ng-template>
 
 <ng-template #dialog2 let-ref="dialogRef">
-    <nb-card>
+    <nb-card class="scroll-bar">
         <nb-card-header>
             <button type="button" (click)="NbDialogRef2.close()" class="close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -138,7 +138,5 @@
             <ng2-smart-table class="scroll-bar" [settings]="Responcesettings" [source]="ResponceSource">
             </ng2-smart-table>
         </nb-card-body>
-        <nb-card-footer>
-        </nb-card-footer>
     </nb-card>
 </ng-template>

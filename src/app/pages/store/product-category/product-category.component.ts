@@ -65,7 +65,7 @@ export class ProductCategoryComponent implements OnInit {
     private post: CategoryService,
     private _auth: LoginService,
     private toastrService: NbToastrService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     let role = this._auth.user.roles.find((x) => x);
@@ -101,10 +101,10 @@ export class ProductCategoryComponent implements OnInit {
       this.allAlert('success', `${data.Data.productName} Created !`, 'Successfully Create Category');
       this.NbDialogRef.close();
       this.ngOnInit();
-    }, 
-    (error: Error) => {
-      this.allAlert('danger', `Not Created !`, `something wrong`);
-    });
+    },
+      (err: any) => {
+        this.allAlert('danger', `Not Created !`, `${err.error.message}`);
+      });
   }
 
   allAlert(alertMsg, headMsg, msg) {
