@@ -284,7 +284,6 @@ export class ProductItemComponent implements OnInit {
       catalogNo: [null, Validators.required],
       frequency: [null, Validators.required],
       remainingItem: [null],
-      quantity: [null],
       expiryDate: [null],
       paytax: [null, Validators.required],
       activation: [true],
