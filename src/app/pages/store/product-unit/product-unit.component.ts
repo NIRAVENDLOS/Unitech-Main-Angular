@@ -84,7 +84,6 @@ export class ProductUnitComponent implements OnInit {
       this.ngOnInit();
     },
       (error: Error) => {
-        console.warn(error);
         this.allAlert('danger', `Not Created !`, `something wrong`);
       });
   }

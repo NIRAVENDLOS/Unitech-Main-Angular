@@ -37,6 +37,7 @@ export class ProductItemComponent implements OnInit {
   NbDialogRef: any;
 
   ItemForm: FormGroup;
+  ItemFormUpdate: FormGroup;
   AddStockForm: FormGroup;
   UploadItemForm: FormGroup;
   IssueForm: FormGroup;
@@ -46,18 +47,65 @@ export class ProductItemComponent implements OnInit {
   total: number;
 
   settings = {
+    actions: 
+    {
+      delete: false,
+      add: false,
+      edit: false,
+      custom: [
+        {
+          name: 'Button',
+          title: '<i class="nb-edit" title="Edit"></i>',
+        }],
+      position: 'right'
+    },
+
+    columns: {
+      itemId: {
+        title: "ID",
+        type: "number",
+      },
+      itemName: {
+        title: "Item Name",
+        type: "number",
+      },
+      itemDescription: {
+        title: "Item Description",
+        type: "number",
+      },
+      catalogNo: {
+        title: "Catalog No",
+        type: "number",
+      },
+      drawingNo: {
+        title: "Drawing No",
+        type: "number",
+      },
+      frequency: {
+        title: "Purchase Time Limit",
+        type: "number",
+      },
+      quantity: {
+        title: "Quantity",
+        type: "number",
+      },
+
+      activation: {
+        title: "Status",
+        type: "html",
+        valuePrepareFunction: (cell, row) => {
+          if (cell == true) {
+            return '<span class="cell_right1">Active</span>';
+          }
+          if (cell == false) {
+            return '<span class="cell_right">Deactive</span>';
+          }
+        },
+      },
+    },
+  };
+  settingRead = {
     actions: false,
-    // {
-    //   delete: false,
-    //   add: false,
-    //   edit: false,
-    //   custom: [
-    //     {
-    //       name: 'Button',
-    //       title: '<i class="nb-edit" title="View"></i>',
-    //     }],
-    //   position: 'right'
-    // },
 
     columns: {
       itemId: {
@@ -209,13 +257,36 @@ export class ProductItemComponent implements OnInit {
         uid: ["", Validators.required],
       }),
       itemDescription: [null],
-      drawingNo: [null],
-      catalogNo: [null],
-      frequency: [null],
+      drawingNo: [null, Validators.required],
+      catalogNo: [null, Validators.required],
+      frequency: [null, Validators.required],
       remainingItem: [null],
       quantity: [null],
       expiryDate: [null],
-      paytax: [null],
+      paytax: [null, Validators.required],
+      activation: [true],
+      employe: this.fb.group({
+        id: [role_id],
+      }),
+    });
+
+    this.ItemFormUpdate = this.fb.group({
+      itemId:[null, Validators.required],
+      itemName: ["", Validators.required],
+      productCategory: this.fb.group({
+        pid: ["", Validators.required],
+      }),
+      unit: this.fb.group({
+        uid: ["", Validators.required],
+      }),
+      itemDescription: [null],
+      drawingNo: [null, Validators.required],
+      catalogNo: [null, Validators.required],
+      frequency: [null, Validators.required],
+      remainingItem: [null],
+      quantity: [null],
+      expiryDate: [null],
+      paytax: [null, Validators.required],
       activation: [true],
       employe: this.fb.group({
         id: [role_id],
@@ -232,18 +303,18 @@ export class ProductItemComponent implements OnInit {
     });
 
     this.IssueForm = this.fb.group({
-      quantity: [null],
-      description: [null],
+      quantity: [null, Validators.required],
+      description: [null, Validators.required],
       isRaised: [false],
       requiredDays: [null],
       storeItemModel: this.fb.group({
-        itemId: [null],
+        itemId: [null, Validators.required],
       }),
       emp: this.fb.group({
-        id: [role_id],
+        id: [role_id, Validators.required],
       }),
-      deptName: [null],
-      machineName: [null],
+      deptName: [null, Validators.required],
+      machineName: [null, Validators.required],
     });
 
     this.usageItemForm = this.fb.group({
@@ -264,6 +335,12 @@ export class ProductItemComponent implements OnInit {
     this.postItem.ViewItem().subscribe((data) => {
       this.item = data.Data;
     });
+  }
+
+  NumberOnly(event) {
+    if (!(event.which >= 48 && event.which <= 57) && !(event.which >= 96 && event.which <= 105) && (event.which != 9 && event.which != 8 && event.which != 190 && event.which != 46 && event.which != 37 && event.which != 39)) {
+      event.preventDefault();
+    }
   }
 
   onItemFormSubmit() {
@@ -469,6 +546,36 @@ export class ProductItemComponent implements OnInit {
     this.IssueForm.get("storeItemModel").get("itemId").setValue(event.itemId);
     this.NbDialogRef = this.dialogService.open(dialog, {
       closeOnBackdropClick: false,
+    });
+  }
+  EditItem(event, dialog) {
+    this.ItemFormUpdate.get('productCategory').get('pid').setValue(event.productCategory.pid);
+    this.ItemFormUpdate.get('unit').get('uid').setValue(event.unit.uid);
+    this.ItemFormUpdate.get('itemName').setValue(event.itemName);
+    this.ItemFormUpdate.get('itemDescription').setValue(event.itemDescription);
+    this.ItemFormUpdate.get('drawingNo').setValue(event.drawingNo);
+    this.ItemFormUpdate.get('catalogNo').setValue(event.catalogNo);
+    this.ItemFormUpdate.get('frequency').setValue(event.frequency);
+    this.ItemFormUpdate.get('remainingItem').setValue(event.remainingItem);
+    this.ItemFormUpdate.get('expiryDate').setValue(event.expiryDays);
+    this.ItemFormUpdate.get('paytax').setValue(event.paytax);
+    this.ItemFormUpdate.get('activation').setValue(event.activation);
+    this.ItemFormUpdate.get('itemId').setValue(event.itemId);
+
+    this.NbDialogRef = this.dialogService.open(dialog, {
+      closeOnBackdropClick: false,
+    });
+  }
+
+  onUpdateItem() {
+    let itemID = this.ItemFormUpdate.value.itemId;
+    this.ItemFormUpdate.removeControl('itemId');
+    this.postItem.UpdateItem(this.ItemFormUpdate.value, itemID).subscribe((data: any) => {
+      this.allAlert('success', `${data.Data.itemName} Updated !`, 'Successfully Item Updated');
+      this.ItemForm.reset();
+      this.ngOnInit();
+    }, (error: any) => {
+      this.allAlert('danger', `Not Updated !`, `${error.error.message}`);
     });
   }
 

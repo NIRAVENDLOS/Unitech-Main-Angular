@@ -26,6 +26,7 @@ export class IndentComponent implements OnInit {
   IndentForm: FormGroup;
   IndentOpenForm: FormGroup;
   ResponceForm: FormGroup;
+  statuschange: any;
   item: any;
 
   tax: any;
@@ -627,16 +628,16 @@ export class IndentComponent implements OnInit {
 
     this.IndentForm = this.fb.group({
       storeItem: this.fb.group({
-        itemId: [null]
+        itemId: [null, Validators.required]
       }),
       employee: this.fb.group({
-        id: [role_id]
+        id: [role_id, Validators.required]
       }),
       issueItem: this.fb.group({
         issueId: [null]
       }),
-      quantity: [null],
-      estimatedPrice: [null]
+      quantity: [null, Validators.required],
+      estimatedPrice: [null, Validators.required]
     })
 
     this.ResponceForm = this.fb.group({
@@ -654,10 +655,10 @@ export class IndentComponent implements OnInit {
     })
 
     this.IndentOpenForm = this.fb.group({
-      quantity: [null],
+      quantity: [null, Validators.required],
       coments: [null, Validators.required],
       remarks: [null],
-      indentId: [null]
+      indentId: [null, Validators.required]
     })
 
     this.postItem.ViewItem().subscribe(data => {
@@ -681,7 +682,12 @@ export class IndentComponent implements OnInit {
     this.post.ViewIndentStatus('DONE').subscribe(data => {
       this.DONEIndentSource = data.Data;
     });
-
+  }
+  
+  NumberOnly(event) {
+    if (!(event.which >= 48 && event.which <= 57) && !(event.which >= 96 && event.which <= 105) && (event.which != 9 && event.which != 8 && event.which != 190 && event.which != 46 && event.which != 37 && event.which != 39)) {
+      event.preventDefault();
+    }
   }
 
   createIndent(dialog: TemplateRef<any>) {
@@ -738,6 +744,7 @@ export class IndentComponent implements OnInit {
   }
 
   onChangeIndentStatus(event, dialog) {
+    this.statuschange = event;
     this.IndentOpenForm.get('indentId').setValue(event.indentId);
     this.NbDialogRef1 = this.dialogService.open(
       dialog,

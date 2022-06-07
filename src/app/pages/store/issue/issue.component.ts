@@ -409,24 +409,24 @@ export class IssueComponent implements OnInit {
     this.postResponce.ViewResponce().subscribe((data: any) => { });
 
     this.IssueForm = this.fb.group({
-      quantity: [null],
-      description: [null],
+      quantity: [null, Validators.required],
+      description: [null, Validators.required],
       isRaised: [false],
-      requiredDays: [null],
+      requiredDays: [null, Validators.required],
       storeItemModel: this.fb.group({
-        itemId: [null],
+        itemId: [null, Validators.required],
       }),
       emp: this.fb.group({
-        id: [role_id],
+        id: [role_id, Validators.required],
       }),
-      deptName: [null],
-      machineName: [null],
+      deptName: [null, Validators.required],
+      machineName: [null, Validators.required],
     });
     this.IssueOpenForm = this.fb.group({
-      quantity: [null],
+      quantity: [null, Validators.required],
       coments: [null, Validators.required],
       remarks: [null],
-      issueId: [null],
+      issueId: [null,Validators.required],
     });
 
     this.ResponceForm = this.fb.group({
@@ -445,16 +445,16 @@ export class IssueComponent implements OnInit {
 
     this.IndentForm = this.fb.group({
       storeItem: this.fb.group({
-        itemId: [null],
+        itemId: [null, Validators.required],
       }),
       employee: this.fb.group({
         id: [role_id],
       }),
       issue: this.fb.group({
-        issueId: [null],
+        issueId: [null, Validators.required],
       }),
-      quantity: [null],
-      estimatedPrice: [null],
+      quantity: [null, Validators.required],
+      estimatedPrice: [null, Validators.required],
     });
 
     this.ResponceFormIndent = this.fb.group({
@@ -503,6 +503,12 @@ export class IssueComponent implements OnInit {
     this.post.ViewIssueStatus("OPEN").subscribe((data) => {
       this.OPENIssueSource = data.Data;
     });
+  }
+
+  NumberOnly(event) {
+    if (!(event.which >= 48 && event.which <= 57) && !(event.which >= 96 && event.which <= 105) && (event.which != 9 && event.which != 8 && event.which != 190 && event.which != 46 && event.which != 37 && event.which != 39)) {
+      event.preventDefault();
+    }
   }
 
   chengeDepartmentName(event) {
