@@ -284,7 +284,7 @@ export class ProductItemComponent implements OnInit {
       catalogNo: [null, Validators.required],
       frequency: [null, Validators.required],
       remainingItem: [null],
-      expiryDate: [null],
+      expiryDays: [null],
       paytax: [null, Validators.required],
       activation: [true],
       employe: this.fb.group({
@@ -548,6 +548,7 @@ export class ProductItemComponent implements OnInit {
     });
   }
   EditItem(event, dialog) {
+    console.warn(event);
     this.ItemFormUpdate.get('productCategory').get('pid').setValue(event.productCategory.pid);
     this.ItemFormUpdate.get('unit').get('uid').setValue(event.unit.uid);
     this.ItemFormUpdate.get('itemName').setValue(event.itemName);
@@ -556,7 +557,7 @@ export class ProductItemComponent implements OnInit {
     this.ItemFormUpdate.get('catalogNo').setValue(event.catalogNo);
     this.ItemFormUpdate.get('frequency').setValue(event.frequency);
     this.ItemFormUpdate.get('remainingItem').setValue(event.remainingItem);
-    this.ItemFormUpdate.get('expiryDate').setValue(event.expiryDays);
+    this.ItemFormUpdate.get('expiryDays').setValue(event.expiryDays);
     this.ItemFormUpdate.get('paytax').setValue(event.paytax);
     this.ItemFormUpdate.get('activation').setValue(event.activation);
     this.ItemFormUpdate.get('itemId').setValue(event.itemId);
@@ -572,6 +573,7 @@ export class ProductItemComponent implements OnInit {
     this.postItem.UpdateItem(this.ItemFormUpdate.value, itemID).subscribe((data: any) => {
       this.allAlert('success', `${data.Data.itemName} Updated !`, 'Successfully Item Updated');
       this.ItemForm.reset();
+      this.NbDialogRef.close();
       this.ngOnInit();
     }, (error: any) => {
       this.allAlert('danger', `Not Updated !`, `${error.error.message}`);

@@ -21,7 +21,7 @@ export class ItemService {
   }
 
   UpdateItem(item: any,itemId: number): Observable<any> {
-    return this.http.patch(`${this.url}/api/v1/store/${itemId}`, item);
+    return this.http.patch(`${this.url}/api/v1/store/up/${itemId}`, item);
   }
 
   FindByIdItem(id: number): Observable<any> {
