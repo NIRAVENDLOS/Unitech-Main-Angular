@@ -69,6 +69,14 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="Select_Vender" class="label">Select Vender <span class="red">*</span></label>
+                    <nb-select placeholder="Select Product Item" multiple fullWidth formControlName="venderAdd" (selectedChange)="changeVender($event)">
+                      <nb-option *ngFor="let item of vendorDate" [value]="item.id" aria-readonly="true">{{ item.vendorName }}
+                      </nb-option>
+                    </nb-select>
+                  </div>
+
+                <div class="form-group">
                     <label for="quantity" class="label">Quantity <span class="red">*</span></label>
                     <input type="tel" nbInput fullWidth id="quantity" placeholder="quantity" formControlName="quantity"
                         (keyup)="taxToatalQantity($event)"  (keydown)="NumberOnly($event)">
@@ -99,7 +107,7 @@
     </nb-card>
 </ng-template>
 
-<ng-template #dialog1 let-ref="dialogRef1">
+<ng-template #dialog1 let-ref="dialogRef">
     <nb-card class="scroll-bar">
         <nb-card-header>Indent
             <button type="button" (click)="NbDialogRef1.close()" class="close" aria-label="Close">
@@ -115,7 +123,7 @@
           
                   <div class="form-group">
                     <label for="quantity" class="label">Quantity</label>
-                    <input type="text" nbInput fullWidth id="quantity" placeholder="quantity" value="{{statuschange.quantity}}" readonly />
+                    <input type="text" nbInput fullWidth id="quantity" placeholder="quantity" formControlName="quantity" readonly />
                   </div>
           
                   <div class="form-group">
@@ -135,6 +143,14 @@
                     <label for="total" class="label">Total Ammount</label>
                     <input type="text" nbInput readonly fullWidth id="total" placeholder="Total Ammount" value="{{ statuschange.includingTax }}" />
                   </div>
+                  
+                  <div class="form-group" *ngIf="admin">
+                    <label for="Select_Item" class="label">Select Vendor <span class="red">*</span></label>
+                    <nb-select placeholder="Select Product Item" fullWidth formControlName="vendorSelect" (ngModelChange)="ViewVendor($event,dialog3)">
+                        <nb-option *ngFor="let item of statuschange.dataVendorAndIndent" value="{{item.id}}">{{item.vendorName}}
+                        </nb-option>
+                    </nb-select>
+                </div>
                 <div class="form-group">
                     <label for="coments" class="label">Comments <span class="red">*</span></label>
                     <input type="tel" nbInput fullWidth id="coments" placeholder="coments" formControlName="coments">
@@ -144,7 +160,7 @@
                     <textarea nbInput fullWidth placeholder="remarks" formControlName="remarks"></textarea>
                 </div>
                 <button class="cancel" nbButton status="success" (click)="indentOpen()" type="button"
-                    [disabled]="IndentOpenForm.get('coments').invalid">Approve</button>
+                    [disabled]="IndentOpenForm.invalid">Approve</button>
                 <button class="cancel" *ngIf="gm || admin" nbButton status="primary" (click)="indentReject()"
                     type="button" [disabled]="IndentOpenForm.get('coments').invalid">Reject</button>
             </form>
@@ -163,5 +179,28 @@
             <ng2-smart-table class="scroll-bar" [settings]="Responcesettings" [source]="ResponceSource">
             </ng2-smart-table>
         </nb-card-body>
+    </nb-card>
+</ng-template>
+
+<ng-template #dialog3 let-ref="dialogRef">
+    <nb-card>
+        <nb-card-header>View Vendor
+            <button type="button" (click)="NbDialogRef3.close()" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </nb-card-header>
+        <nb-card-body>
+            <nb-list>
+                <nb-list-item> vendor Code:- {{vendorDetails.vendorcode}}</nb-list-item>
+                <nb-list-item> vendor Name:- {{vendorDetails.vendorName}}</nb-list-item>
+                <nb-list-item> vendor Address:- {{vendorDetails.vendorAddress}}</nb-list-item>
+                <nb-list-item> pan no:- {{vendorDetails.panno}}</nb-list-item>
+                <nb-list-item> gst no:- {{vendorDetails.gstno}}</nb-list-item>
+                <nb-list-item> payment Terms Conditions:- {{vendorDetails.paymentTermsConditions}}</nb-list-item>
+            </nb-list>
+        </nb-card-body>
+        <nb-card-footer>
+            <button class="cancel" nbButton status="success" (click)="NbDialogRef3.close()" type="button">Submit</button>
+        </nb-card-footer>
     </nb-card>
 </ng-template>
