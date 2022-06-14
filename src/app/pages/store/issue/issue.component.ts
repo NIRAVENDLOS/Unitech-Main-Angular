@@ -842,7 +842,6 @@ export class IssueComponent implements OnInit {
     this.IndentForm.get("issue")
       .get("issueId")
       .setValue(this.statusChangeIssue.issueId);
-    console.warn(this.statusChangeIssue);
     this.IndentForm.get("quantity").setValue(this.statusChangeIssue.quantity);
     this.NbDialogRef1.close();
     this.NbDialogRef3 = this.dialogService.open(dialog3, {
@@ -868,7 +867,6 @@ export class IssueComponent implements OnInit {
   }
 
   changeVender(event) {
-    console.warn(event);
     this.DataTransferVender.length = 0;
     for (let i = 0; i < event.length; i++) {
       this.DataTransferVender.push({ 'id': event[i] });
@@ -878,7 +876,6 @@ export class IssueComponent implements OnInit {
   onIndentFormSubmit() {
     this.IndentForm.removeControl('venderAdd');
     this.IndentForm.addControl('dataVendorAndIndent', this.fb.control(this.DataTransferVender));
-    console.warn(this.IndentForm.value);
     this.postIndent
       .CreateIndent(this.IndentForm.value)
       .subscribe((data: any) => {

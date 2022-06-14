@@ -548,7 +548,6 @@ export class ProductItemComponent implements OnInit {
     });
   }
   EditItem(event, dialog) {
-    console.warn(event);
     this.ItemFormUpdate.get('productCategory').get('pid').setValue(event.productCategory.pid);
     this.ItemFormUpdate.get('unit').get('uid').setValue(event.unit.uid);
     this.ItemFormUpdate.get('itemName').setValue(event.itemName);

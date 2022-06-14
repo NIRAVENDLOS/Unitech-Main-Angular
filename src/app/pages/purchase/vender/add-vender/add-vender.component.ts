@@ -26,7 +26,6 @@ export class AddVenderComponent implements OnInit {
 
     this.postItem.ViewItem().subscribe((data) => {
       this.item = data.Data;
-      console.warn(this.item);
     });
 
     this.venderForm = this.fb.group({

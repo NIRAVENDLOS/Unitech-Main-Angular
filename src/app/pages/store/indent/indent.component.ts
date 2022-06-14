@@ -690,7 +690,6 @@ export class IndentComponent implements OnInit {
     });
     this.post.ViewIndentStatus('ADMIN').subscribe(data => {
       this.ADMINIndentSource = data.Data;
-      console.warn(this.ADMINIndentSource);
     });
     this.post.ViewIndentStatus('ACCOUNT').subscribe(data => {
       this.ACCOUNTIndentSource = data.Data;
@@ -729,7 +728,6 @@ export class IndentComponent implements OnInit {
   }
 
   changeVender(event) {
-    console.warn(event);
     this.DataTransferVender.length = 0;
     for (let i = 0; i < event.length; i++) {
       this.DataTransferVender.push({ 'id': event[i] });
@@ -756,7 +754,6 @@ export class IndentComponent implements OnInit {
   onIndentFormSubmit() {
     this.IndentForm.removeControl('venderAdd');
     this.IndentForm.addControl('dataVendorAndIndent', this.fb.control(this.DataTransferVender));
-    console.warn(this.IndentForm.value);
 
     this.post.CreateIndent(this.IndentForm.value).subscribe((data: any) => {
 
@@ -803,7 +800,6 @@ export class IndentComponent implements OnInit {
 
   ViewVendor(event, dialog: TemplateRef<any>) {
     this.venderService.ViewVenderById(event).subscribe((data: any) => {
-      console.warn(data);
       this.vendorDetails = data.Data;
       this.NbDialogRef3 = this.dialogService.open(
         dialog,
@@ -822,7 +818,6 @@ export class IndentComponent implements OnInit {
     if (this.admin) {
       this.IndentOpenSatatus.get('indentStatus').setValue('ACCOUNT');
       this.IndentOpenSatatus.addControl('vendorData',this.fb.group({ id: [this.IndentOpenForm.value.vendorSelect]}));
-      console.warn(this.IndentOpenSatatus.value);
       this.ResponceForm.get('issueStatus').setValue("ADMIN");
     }
     else if (this.gm) {
