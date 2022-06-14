@@ -18,23 +18,27 @@ export class VenderDetailsComponent implements OnInit {
         type: 'number',
       },
       vendorName: {
-        title: 'vendor Name',
+        title:  'Vender Name',
         type: 'string',
       },
       vendorAddress: {
-        title: 'vendor Address',
+        title:  'Vender Address',
         type: 'string',
       },
       vendorcode: {
-        title: 'vendor Code',
+        title:  'Vender Code',
         type: 'number',
       },
       gstno: {
-        title: 'vendor GST',
+        title:  'Vender GST',
         type: 'string',
       },
       panno: {
-        title: 'vendor PAN No.',
+        title:  'Vender PAN No.',
+        type: 'string',
+      },
+      paymentTermsConditions: {
+        title: 'Payment Terms Conditions',
         type: 'string',
       }
     },

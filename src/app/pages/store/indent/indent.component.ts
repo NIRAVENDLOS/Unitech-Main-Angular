@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NbDialogService, NbGlobalPhysicalPosition, NbToastrService } from '@nebular/theme';
 import { LoginService } from '../../../@service/auth/login.service';
+import { VenderService } from '../../../@service/purchase/vender/vender.service';
 import { IndentService } from '../../../@service/store/indent.service';
 import { ItemService } from '../../../@service/store/item.service';
 import { ResponceService } from '../../../@service/store/responce.service';
@@ -22,13 +23,18 @@ export class IndentComponent implements OnInit {
   NbDialogRef: any;
   NbDialogRef1: any;
   NbDialogRef2: any;
+  NbDialogRef3: any;
 
   IndentForm: FormGroup;
   IndentOpenForm: FormGroup;
+  IndentOpenSatatus: FormGroup;
   ResponceForm: FormGroup;
+
   statuschange: any;
   item: any;
-
+  DataTransferVender = [];
+  vendorDate: [];
+  vendorDetails: any;
   tax: any;
   total: any;
   basicAmmount: number;
@@ -71,11 +77,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Basic Ammount',
+        title: 'Basic Amount',
         type: 'number',
       },
       includingTax: {
-        title: 'Total Ammount',
+        title: 'Total Amount',
         type: 'number',
       },
       created: {
@@ -124,11 +130,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Basic Ammount',
+        title: 'Basic Amount',
         type: 'number',
       },
       includingTax: {
-        title: 'Total Ammount',
+        title: 'Total Amount',
         type: 'number',
       },
       created: {
@@ -188,11 +194,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Basic Ammount',
+        title: 'Basic Amount',
         type: 'number',
       },
       includingTax: {
-        title: 'Total Ammount',
+        title: 'Total Amount',
         type: 'number',
       },
       created: {
@@ -252,11 +258,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Basic Ammount',
+        title: 'Basic Amount',
         type: 'number',
       },
       includingTax: {
-        title: 'Total Ammount',
+        title: 'Total Amount',
         type: 'number',
       },
       created: {
@@ -305,11 +311,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Basic Ammount',
+        title: 'Basic Amount',
         type: 'number',
       },
       includingTax: {
-        title: 'Total Ammount',
+        title: 'Total Amount',
         type: 'number',
       },
       created: {
@@ -369,11 +375,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Basic Ammount',
+        title: 'Basic Amount',
         type: 'number',
       },
       includingTax: {
-        title: 'Total Ammount',
+        title: 'Total Amount',
         type: 'number',
       },
       created: {
@@ -422,11 +428,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Basic Ammount',
+        title: 'Basic Amount',
         type: 'number',
       },
       includingTax: {
-        title: 'Total Ammount',
+        title: 'Total Amount',
         type: 'number',
       },
       created: {
@@ -475,11 +481,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Basic Ammount',
+        title: 'Basic Amount',
         type: 'number',
       },
       includingTax: {
-        title: 'Total Ammount',
+        title: 'Total Amount',
         type: 'number',
       },
       created: {
@@ -539,11 +545,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Basic Ammount',
+        title: 'Basic Amount',
         type: 'number',
       },
       includingTax: {
-        title: 'Total Ammount',
+        title: 'Total Amount',
         type: 'number',
       },
       created: {
@@ -608,7 +614,8 @@ export class IndentComponent implements OnInit {
     private post: IndentService,
     private postItem: ItemService,
     private postResponce: ResponceService,
-    private toastrService: NbToastrService
+    private toastrService: NbToastrService,
+    private venderService: VenderService,
   ) { }
 
   ngOnInit(): void {
@@ -637,7 +644,8 @@ export class IndentComponent implements OnInit {
         issueId: [null]
       }),
       quantity: [null, Validators.required],
-      estimatedPrice: [null, Validators.required]
+      estimatedPrice: [null, Validators.required],
+      venderAdd: [null]
     })
 
     this.ResponceForm = this.fb.group({
@@ -646,7 +654,7 @@ export class IndentComponent implements OnInit {
       issueStatus: [null],
       coments: [null, Validators.required],
       remarks: [null],
-      indentRaised: [true],
+      indentRaised: [true], 
       poRaised: [false],
       doRaised: [false],
       employe: this.fb.group({
@@ -658,8 +666,18 @@ export class IndentComponent implements OnInit {
       quantity: [null, Validators.required],
       coments: [null, Validators.required],
       remarks: [null],
-      indentId: [null, Validators.required]
+      indentId: [null, Validators.required],
     })
+    this.IndentOpenSatatus = this.fb.group({
+      indentStatus: [null, Validators.required],
+      // vendorDetails: this.fb.group({
+      //   id: [null]
+      // }),
+    });
+
+    if(this.admin) {
+      this.IndentOpenForm.addControl("vendorSelect",this.fb.control([null, Validators.required]));
+    }
 
     this.postItem.ViewItem().subscribe(data => {
       this.item = data.Data;
@@ -672,6 +690,7 @@ export class IndentComponent implements OnInit {
     });
     this.post.ViewIndentStatus('ADMIN').subscribe(data => {
       this.ADMINIndentSource = data.Data;
+      console.warn(this.ADMINIndentSource);
     });
     this.post.ViewIndentStatus('ACCOUNT').subscribe(data => {
       this.ACCOUNTIndentSource = data.Data;
@@ -683,7 +702,7 @@ export class IndentComponent implements OnInit {
       this.DONEIndentSource = data.Data;
     });
   }
-  
+
   NumberOnly(event) {
     if (!(event.which >= 48 && event.which <= 57) && !(event.which >= 96 && event.which <= 105) && (event.which != 9 && event.which != 8 && event.which != 190 && event.which != 46 && event.which != 37 && event.which != 39)) {
       event.preventDefault();
@@ -705,7 +724,16 @@ export class IndentComponent implements OnInit {
     this.total = null;
     this.postItem.FindByIdItem(event).subscribe((data: any) => {
       this.tax = data.Data.paytax;
+      this.vendorDate = data.Data.vendorDate;
     })
+  }
+
+  changeVender(event) {
+    console.warn(event);
+    this.DataTransferVender.length = 0;
+    for (let i = 0; i < event.length; i++) {
+      this.DataTransferVender.push({ 'id': event[i] });
+    }
   }
 
   taxToatal(event) {
@@ -726,6 +754,10 @@ export class IndentComponent implements OnInit {
   }
 
   onIndentFormSubmit() {
+    this.IndentForm.removeControl('venderAdd');
+    this.IndentForm.addControl('dataVendorAndIndent', this.fb.control(this.DataTransferVender));
+    console.warn(this.IndentForm.value);
+
     this.post.CreateIndent(this.IndentForm.value).subscribe((data: any) => {
 
       this.ResponceForm.get('coments').setValue("create indent");
@@ -736,16 +768,20 @@ export class IndentComponent implements OnInit {
         this.NbDialogRef.close();
         this.ngOnInit();
       }, (error: any) => {
+        this.ngOnInit();
         this.allAlert('danger', `Not Created !`, `${error.error.message}`);
       })
     }, (error: any) => {
+      this.ngOnInit();
       this.allAlert('danger', `Not Created !`, `${error.error.message}`);
     })
   }
 
-  onChangeIndentStatus(event, dialog) {
+  onChangeIndentStatus(event, dialog: TemplateRef<any>) {
+    this.IndentOpenForm.reset();
     this.statuschange = event;
     this.IndentOpenForm.get('indentId').setValue(event.indentId);
+    this.IndentOpenForm.get('quantity').setValue(event.quantity);
     this.NbDialogRef1 = this.dialogService.open(
       dialog,
       {
@@ -753,10 +789,11 @@ export class IndentComponent implements OnInit {
       });
   }
 
-  onChangeIndentViewStatus(event, dialog) {
+  onChangeIndentViewStatus(event, dialog: TemplateRef<any>) {
     this.postResponce.ViewByStatusResponce('INDENT', event.indentId).subscribe((data: any) => {
       this.ResponceSource = data.Data;
     })
+
     this.NbDialogRef2 = this.dialogService.open(
       dialog,
       {
@@ -764,40 +801,50 @@ export class IndentComponent implements OnInit {
       });
   }
 
+  ViewVendor(event, dialog: TemplateRef<any>) {
+    this.venderService.ViewVenderById(event).subscribe((data: any) => {
+      console.warn(data);
+      this.vendorDetails = data.Data;
+      this.NbDialogRef3 = this.dialogService.open(
+        dialog,
+        {
+          closeOnBackdropClick: false,
+        });
+    })
+  }
+
   indentOpen() {
     this.ResponceForm.get('coments').setValue(this.IndentOpenForm.value.coments);
     this.ResponceForm.get('remarks').setValue(this.IndentOpenForm.value.remarks);
     this.ResponceForm.get('pdiId').setValue(this.IndentOpenForm.value.indentId);
 
-    let Opendata = null;
+    this.IndentOpenSatatus.get('indentStatus').setValue(null);
     if (this.admin) {
-      Opendata = {
-        'indentStatus': 'ACCOUNT'
-      }
+      this.IndentOpenSatatus.get('indentStatus').setValue('ACCOUNT');
+      this.IndentOpenSatatus.addControl('vendorData',this.fb.group({ id: [this.IndentOpenForm.value.vendorSelect]}));
+      console.warn(this.IndentOpenSatatus.value);
       this.ResponceForm.get('issueStatus').setValue("ADMIN");
     }
     else if (this.gm) {
-      Opendata = {
-        'indentStatus': 'ADMIN'
-      }
+      this.IndentOpenSatatus.get('indentStatus').setValue('ADMIN');
       this.ResponceForm.get('issueStatus').setValue("GM");
     }
     else if (this.account) {
-      Opendata = {
-        'indentStatus': 'DONE'
-      }
+      this.IndentOpenSatatus.get('indentStatus').setValue('DONE');
       this.ResponceForm.get('issueStatus').setValue("ACCOUNT");
     }
 
-    this.post.StatusUpdateIndent(this.IndentOpenForm.value.indentId, Opendata).subscribe((data: any) => {
+    this.post.StatusUpdateIndent(this.IndentOpenForm.value.indentId, this.IndentOpenSatatus.value).subscribe((data: any) => {
       this.postResponce.CreateResponce(this.ResponceForm.value).subscribe((data: any) => {
         this.allAlert('success', `Indent Approved !`, 'Successfully Indent Approved');
         this.NbDialogRef1.close();
         this.ngOnInit();
       }, (error: any) => {
+        this.ngOnInit();
         this.allAlert('danger', `Not Created !`, `${error.error.message}`);
       })
     }, (error: any) => {
+      this.ngOnInit();
       this.allAlert('danger', `Not Created !`, `${error.error.message}`);
     });
   }

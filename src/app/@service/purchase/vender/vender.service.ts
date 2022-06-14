@@ -13,10 +13,14 @@ export class VenderService {
   url = `${apiUrl.url}/unitech/api/v1/purchase/vendor`;
 
   CreateVender(vender:any): Observable<any> {
-    return this.http.post(`${this.url}/save`,vender);
+    return this.http.post(`${this.url}`,vender);
   }
 
   ViewVender(): Observable<any> {
     return this.http.get(`${this.url}/all`);
+  }
+
+  ViewVenderById(id: any): Observable<any> {
+    return this.http.get(`${this.url}/${id}`);
   }
 }

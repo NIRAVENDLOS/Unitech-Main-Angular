@@ -44,6 +44,7 @@ export class IssueComponent implements OnInit {
 
   tax: any;
   total: any;
+  DataTransferVender = [];
   basicAmmount: number;
 
   deptName: any = [
@@ -426,7 +427,7 @@ export class IssueComponent implements OnInit {
       quantity: [null, Validators.required],
       coments: [null, Validators.required],
       remarks: [null],
-      issueId: [null,Validators.required],
+      issueId: [null, Validators.required],
     });
 
     this.ResponceForm = this.fb.group({
@@ -455,6 +456,7 @@ export class IssueComponent implements OnInit {
       }),
       quantity: [null, Validators.required],
       estimatedPrice: [null, Validators.required],
+      venderAdd: [null]
     });
 
     this.ResponceFormIndent = this.fb.group({
@@ -840,6 +842,7 @@ export class IssueComponent implements OnInit {
     this.IndentForm.get("issue")
       .get("issueId")
       .setValue(this.statusChangeIssue.issueId);
+    console.warn(this.statusChangeIssue);
     this.IndentForm.get("quantity").setValue(this.statusChangeIssue.quantity);
     this.NbDialogRef1.close();
     this.NbDialogRef3 = this.dialogService.open(dialog3, {
@@ -864,7 +867,18 @@ export class IssueComponent implements OnInit {
     }
   }
 
+  changeVender(event) {
+    console.warn(event);
+    this.DataTransferVender.length = 0;
+    for (let i = 0; i < event.length; i++) {
+      this.DataTransferVender.push({ 'id': event[i] });
+    }
+  }
+
   onIndentFormSubmit() {
+    this.IndentForm.removeControl('venderAdd');
+    this.IndentForm.addControl('dataVendorAndIndent', this.fb.control(this.DataTransferVender));
+    console.warn(this.IndentForm.value);
     this.postIndent
       .CreateIndent(this.IndentForm.value)
       .subscribe((data: any) => {
@@ -881,6 +895,7 @@ export class IssueComponent implements OnInit {
             this.allAlert('danger', `Not Created !`, `${error.error.message}`);
           });
       }, (error: any) => {
+    this.ngOnInit();
         this.allAlert('danger', `Not Created !`, `${error.error.message}`);
       });
   }
