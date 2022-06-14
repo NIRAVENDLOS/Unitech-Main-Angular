@@ -33,6 +33,7 @@ export class AddVenderComponent implements OnInit {
       vendorName: ['', Validators.required],
       vendorAddress: ['', Validators.required],
       vendorcode: ['', [Validators.required, Validators.pattern]],
+      paymentTermsConditions: [null, Validators.required],
       gstno: [''],
       panno: [''],
       itemDemo: [null]
@@ -51,6 +52,7 @@ export class AddVenderComponent implements OnInit {
 
     this.venderService.CreateVender(this.venderForm.value).subscribe((data: any) => {
       this.allAlert('success', `Vender Created !`, 'Successfully Vender Created');
+      this.ngOnInit();
       this.venderForm.reset();
     },
       (error: any) => {

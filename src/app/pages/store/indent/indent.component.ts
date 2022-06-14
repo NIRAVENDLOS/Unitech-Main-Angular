@@ -77,11 +77,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Basic Ammount',
+        title: 'Basic Amount',
         type: 'number',
       },
       includingTax: {
-        title: 'Total Ammount',
+        title: 'Total Amount',
         type: 'number',
       },
       created: {
@@ -130,11 +130,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Basic Ammount',
+        title: 'Basic Amount',
         type: 'number',
       },
       includingTax: {
-        title: 'Total Ammount',
+        title: 'Total Amount',
         type: 'number',
       },
       created: {
@@ -194,11 +194,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Basic Ammount',
+        title: 'Basic Amount',
         type: 'number',
       },
       includingTax: {
-        title: 'Total Ammount',
+        title: 'Total Amount',
         type: 'number',
       },
       created: {
@@ -258,11 +258,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Basic Ammount',
+        title: 'Basic Amount',
         type: 'number',
       },
       includingTax: {
-        title: 'Total Ammount',
+        title: 'Total Amount',
         type: 'number',
       },
       created: {
@@ -311,11 +311,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Basic Ammount',
+        title: 'Basic Amount',
         type: 'number',
       },
       includingTax: {
-        title: 'Total Ammount',
+        title: 'Total Amount',
         type: 'number',
       },
       created: {
@@ -375,11 +375,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Basic Ammount',
+        title: 'Basic Amount',
         type: 'number',
       },
       includingTax: {
-        title: 'Total Ammount',
+        title: 'Total Amount',
         type: 'number',
       },
       created: {
@@ -428,11 +428,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Basic Ammount',
+        title: 'Basic Amount',
         type: 'number',
       },
       includingTax: {
-        title: 'Total Ammount',
+        title: 'Total Amount',
         type: 'number',
       },
       created: {
@@ -481,11 +481,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Basic Ammount',
+        title: 'Basic Amount',
         type: 'number',
       },
       includingTax: {
-        title: 'Total Ammount',
+        title: 'Total Amount',
         type: 'number',
       },
       created: {
@@ -545,11 +545,11 @@ export class IndentComponent implements OnInit {
         },
       },
       total: {
-        title: 'Basic Ammount',
+        title: 'Basic Amount',
         type: 'number',
       },
       includingTax: {
-        title: 'Total Ammount',
+        title: 'Total Amount',
         type: 'number',
       },
       created: {

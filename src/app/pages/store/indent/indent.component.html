@@ -70,7 +70,7 @@
 
                 <div class="form-group">
                     <label for="Select_Vender" class="label">Select Vender <span class="red">*</span></label>
-                    <nb-select placeholder="Select Product Item" multiple fullWidth formControlName="venderAdd" (selectedChange)="changeVender($event)">
+                    <nb-select placeholder="Select Vender" multiple fullWidth formControlName="venderAdd" (selectedChange)="changeVender($event)">
                       <nb-option *ngFor="let item of vendorDate" [value]="item.id" aria-readonly="true">{{ item.vendorName }}
                       </nb-option>
                     </nb-select>
@@ -92,13 +92,13 @@
                     <input type="tel" nbInput readonly fullWidth id="tex" placeholder="Tax Price" value="{{tax}}">
                 </div>
                 <div class="form-group">
-                    <label for="basicAmmount" class="label">Basic Ammount</label>
-                    <input type="tel" nbInput readonly fullWidth id="basicAmmount" placeholder="Basic Ammount"
+                    <label for="basicAmmount" class="label">Basic Amount</label>
+                    <input type="tel" nbInput readonly fullWidth id="basicAmmount" placeholder="Basic Amount"
                         value="{{basicAmmount}}">
                 </div>
                 <div class="form-group">
-                    <label for="total" class="label">Total Ammount</label>
-                    <input type="tel" nbInput readonly fullWidth id="total" placeholder="Total Ammount"
+                    <label for="total" class="label">Total Amount</label>
+                    <input type="tel" nbInput readonly fullWidth id="total" placeholder="Total Amount"
                         value="{{total}}">
                 </div>
                 <button nbButton status="success" [disabled]="IndentForm.invalid" type="submit">Submit</button>
@@ -135,18 +135,18 @@
                     <input type="text" nbInput readonly fullWidth id="tex" placeholder="Tax Price" value="{{ statuschange.storeItem.paytax }}" />
                   </div>
                   <div class="form-group">
-                    <label for="basicAmmount" class="label">Basic Ammount</label>
-                    <input type="text" nbInput readonly fullWidth id="basicAmmount" placeholder="Basic Ammount"
+                    <label for="basicAmmount" class="label">Basic Amount</label>
+                    <input type="text" nbInput readonly fullWidth id="basicAmmount" placeholder="Basic Amount"
                       value="{{ statuschange.total }}" />
                   </div>
                   <div class="form-group">
-                    <label for="total" class="label">Total Ammount</label>
-                    <input type="text" nbInput readonly fullWidth id="total" placeholder="Total Ammount" value="{{ statuschange.includingTax }}" />
+                    <label for="total" class="label">Total Amount</label>
+                    <input type="text" nbInput readonly fullWidth id="total" placeholder="Total Amount" value="{{ statuschange.includingTax }}" />
                   </div>
                   
                   <div class="form-group" *ngIf="admin">
-                    <label for="Select_Item" class="label">Select Vendor <span class="red">*</span></label>
-                    <nb-select placeholder="Select Product Item" fullWidth formControlName="vendorSelect" (ngModelChange)="ViewVendor($event,dialog3)">
+                    <label for="Select_Item" class="label">Select Vender <span class="red">*</span></label>
+                    <nb-select placeholder="Select Vender" fullWidth formControlName="vendorSelect" (ngModelChange)="ViewVendor($event,dialog3)">
                         <nb-option *ngFor="let item of statuschange.dataVendorAndIndent" value="{{item.id}}">{{item.vendorName}}
                         </nb-option>
                     </nb-select>
