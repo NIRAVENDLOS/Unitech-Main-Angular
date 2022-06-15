@@ -1,10 +1,4 @@
-<div *ngIf="MachineNotFounderror">
-  <nb-card class="text-center">
-    <nb-card-body>
-      <h2>Bloowroom Machine Not Found</h2>
-    </nb-card-body>
-  </nb-card>
-</div>
+
 
 <div class="row" *ngIf="admin && !MachineNotFounderror">
   <div class="col-lg-6">
@@ -18,6 +12,13 @@
 </div>
 
 <div class="row" *ngIf="admin">
+  <div *ngIf="MachineNotFounderror">
+    <nb-card class="text-center">
+      <nb-card-body>
+        <h2>Bloowroom Machine Not Found</h2>
+      </nb-card-body>
+    </nb-card>
+  </div>
   <div class="col-md-12" *ngIf="!MachineNotFounderror">
     <nb-card>
       <nb-card-body>
@@ -85,7 +86,13 @@
 </div>
 
 <div class="row" *ngIf="superviser">
-
+  <div *ngIf="MachineNotFounderror">
+    <nb-card class="text-center">
+      <nb-card-body>
+        <h2>Bloowroom Machine Not Found</h2>
+      </nb-card-body>
+    </nb-card>
+  </div>
   <div class="col-md-12" *ngIf="!QcMachineParameterNotSetError">
     <nb-card>
       <nb-card-header>{{todayDate | date: 'dd/MM/yyyy'}}
@@ -101,6 +108,13 @@
 </div>
 
 <div class="row" *ngIf="qc">
+  <div *ngIf="MachineNotFounderror">
+    <nb-card class="text-center">
+      <nb-card-body>
+        <h2>Bloowroom Machine Not Found</h2>
+      </nb-card-body>
+    </nb-card>
+  </div>
   <div class="col-md-12" *ngIf="!MachineNotFounderror">
     <nb-card>
       <nb-card-header>{{ time | date: 'dd/MM/yyyy'}} </nb-card-header>

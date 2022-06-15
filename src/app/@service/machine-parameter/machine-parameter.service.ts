@@ -100,38 +100,38 @@ export class MachineParameterService {
   }
 
   DateSingleBloowRoom(Date: any): Observable<any> {
-    return this.http.get(`${this.url}/bloowroom/searchsingle?start=${Date}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/bloowroom/searchsingle?start=${Date}`);
   }
   DateSingleCarding(Date: any): Observable<any> {
-    return this.http.get(`${this.url}/carding/searchsingle?start=${Date}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/carding/searchsingle?start=${Date}`);
   }
   DateSingleDrawframesKG(Date: any): Observable<any> {
-    return this.http.get(`${this.url}/drawframes/searchsingle?start=${Date}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/drawframes/searchsingle?start=${Date}`);
   }
   DateSingleDrawframesHANK(Date: any): Observable<any> {
-    return this.http.get(`${this.url}/drawframesperhank/searchsingle?start=${Date}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/drawframesperhank/searchsingle?start=${Date}`);
   }
   DateSingleFinisherKG(Date: any): Observable<any> {
-    return this.http.get(`${this.url}/finisher/searchsingle?start=${Date}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/finisher/searchsingle?start=${Date}`);
   }
   DateSingleFinisherHANK(Date: any): Observable<any> {
-    return this.http.get(`${this.url}/finisherperhank/searchsingle?start=${Date}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/finisherperhank/searchsingle?start=${Date}`);
   }
   DateSingleSimplex(Date: any): Observable<any> {
-    return this.http.get(`${this.url}/simplex/searchsingle?start=${Date}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/simplex/searchsingle?start=${Date}`);
   }
   DateSingleRingframe(Date: any): Observable<any> {
-    return this.http.get(`${this.url}/ringframe/searchsingle?start=${Date}&page=0&pageSize=200`);
+    return this.http.get(`${this.url}/ringframe/searchsingle?start=${Date}`);
   }
   DateSingleComber(Date: any): Observable<any> {
-    return this.http.get(`${this.url}/comber/searchsingle?start=${Date}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/comber/searchsingle?start=${Date}`);
   }
   DateSingleLapformer(Date: any): Observable<any> {
-    return this.http.get(`${this.url}/lapformer/searchsingle?start=${Date}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/lapformer/searchsingle?start=${Date}`);
   }
 
   DateBloowRoom(start: any, end: any): Observable<any> {
-    return this.http.get(`${this.url}/bloowroom/search?start=${start}&end=${end}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/bloowroom/search?start=${start}&end=${end}`);
   }
   DownloadBloowRoom(start: any, end: any): Observable<any> {
     return this.http.get(`${this.url}/bloowroom/download?start=${start}&end=${end}`, { responseType: 'blob' })
@@ -141,7 +141,7 @@ export class MachineParameterService {
   }
 
   DateCarding(start: any, end: any): Observable<any> {
-    return this.http.get(`${this.url}/carding/search?start=${start}&end=${end}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/carding/search?start=${start}&end=${end}`);
   }
   DownloadCarding(start: any, end: any): Observable<any> {
     return this.http.get(`${this.url}/carding/download?start=${start}&end=${end}`, { responseType: 'blob' })
@@ -151,7 +151,7 @@ export class MachineParameterService {
   }
 
   DateSimplax(start: any, end: any): Observable<any> {
-    return this.http.get(`${this.url}/simplex/search?start=${start}&end=${end}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/simplex/search?start=${start}&end=${end}`);
   }
   DownloadSimplax(start: any, end: any): Observable<any> {
     return this.http.get(`${this.url}/simplex/download?start=${start}&end=${end}`, { responseType: 'blob' })
@@ -161,7 +161,7 @@ export class MachineParameterService {
   }
 
   DateComber(start: any, end: any): Observable<any> {
-    return this.http.get(`${this.url}/comber/search?start=${start}&end=${end}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/comber/search?start=${start}&end=${end}`);
   }
   DownloadComber(start: any, end: any): Observable<any> {
     return this.http.get(`${this.url}/comber/download?start=${start}&end=${end}`, { responseType: 'blob' })
@@ -171,7 +171,7 @@ export class MachineParameterService {
   }
 
   DateLapformer(start: any, end: any): Observable<any> {
-    return this.http.get(`${this.url}/lapformer/search?start=${start}&end=${end}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/lapformer/search?start=${start}&end=${end}`);
   }
   DownloadLapformer(start: any, end: any): Observable<any> {
     return this.http.get(`${this.url}/lapformer/download?start=${start}&end=${end}`, { responseType: 'blob' })
@@ -181,7 +181,7 @@ export class MachineParameterService {
   }
 
   DateRingframe(start: any, end: any): Observable<any> {
-    return this.http.get(`${this.url}/ringframe/search?start=${start}&end=${end}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/ringframe/search?start=${start}&end=${end}`);
   }
   DownloadRingframe(start: any, end: any): Observable<any> {
     return this.http.get(`${this.url}/ringframe/download?start=${start}&end=${end}`, { responseType: 'blob' })
@@ -191,7 +191,7 @@ export class MachineParameterService {
   }
 
   DateDrawframeKG(start: any, end: any): Observable<any> {
-    return this.http.get(`${this.url}/drawframes/search?start=${start}&end=${end}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/drawframes/search?start=${start}&end=${end}`);
   }
   DownloadDrawframeKG(start: any, end: any): Observable<any> {
     return this.http.get(`${this.url}/drawframes/download?start=${start}&end=${end}`, { responseType: 'blob' })
@@ -201,7 +201,7 @@ export class MachineParameterService {
   }
 
   DateDrawframeHANK(start: any, end: any): Observable<any> {
-    return this.http.get(`${this.url}/drawframesperhank/search?start=${start}&end=${end}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/drawframesperhank/search?start=${start}&end=${end}`);
   }
   DownloadDrawframeHANK(start: any, end: any): Observable<any> {
     return this.http.get(`${this.url}/drawframesperhank/download?start=${start}&end=${end}`, { responseType: 'blob' })
@@ -211,7 +211,7 @@ export class MachineParameterService {
   }
 
   DateFinisherKG(start: any, end: any): Observable<any> {
-    return this.http.get(`${this.url}/finisher/search?start=${start}&end=${end}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/finisher/search?start=${start}&end=${end}`);
   }
   DownloadFinisherKG(start: any, end: any): Observable<any> {
     return this.http.get(`${this.url}/finisher/download?start=${start}&end=${end}`, { responseType: 'blob' })
@@ -221,7 +221,7 @@ export class MachineParameterService {
   }
 
   DateFinisherHANK(start: any, end: any): Observable<any> {
-    return this.http.get(`${this.url}/finisherperhank/search?start=${start}&end=${end}&page=0&pagesize=200`);
+    return this.http.get(`${this.url}/finisherperhank/search?start=${start}&end=${end}`);
   }
   DownloadFinisherHANK(start: any, end: any): Observable<any> {
     return this.http.get(`${this.url}/finisherperhank/download?start=${start}&end=${end}`, { responseType: 'blob' })
