@@ -556,51 +556,58 @@ export class BloowroomComponent implements OnInit {
   }
 
   onBloowroomParameterAoneSubmit() {
+    let check = 1;
     for (let i = 0; i < this.bloowroomparameterAone.value.parareading.length; i++) {
       let Mid = this.bloowroomparameterAone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursOne': this.bloowroomparameterAone.value.parareading[i].shift_a_sixHoursOne }
       this.bloowroomAllPara.BloowRoomParameterShiftAOne(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.bloowroomparameterAone.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
   onBloowroomParameterAtwoSubmit() {
-
+    let check = 1;
     for (let i = 0; i < this.bloowroomparameterAtwo.value.parareading.length; i++) {
       let Mid = this.bloowroomparameterAtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursTwo': this.bloowroomparameterAtwo.value.parareading[i].shift_a_sixHoursTwo }
       this.bloowroomAllPara.BloowRoomParameterShiftATwo(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.bloowroomparameterAtwo.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
   onBloowroomParameterBoneSubmit() {
+    let check = 1;
     for (let i = 0; i < this.bloowroomparameterBone.value.parareading.length; i++) {
       let Mid = this.bloowroomparameterBone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_sixHoursOne': this.bloowroomparameterBone.value.parareading[i].shift_b_sixHoursOne }
       this.bloowroomAllPara.BloowRoomParameterShiftBOne(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.bloowroomparameterBone.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
   onBloowroomParameterBtwoSubmit() {
+    let check = 1;
     for (let i = 0; i < this.bloowroomparameterBtwo.value.parareading.length; i++) {
       let Mid = this.bloowroomparameterBtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_sixHoursTwo': this.bloowroomparameterBtwo.value.parareading[i].shift_b_sixHoursTwo }
       this.bloowroomAllPara.BloowRoomParameterShiftBTwo(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.bloowroomparameterBtwo.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
   allAlert(alertMsg, nameMachine, typeMachine) {

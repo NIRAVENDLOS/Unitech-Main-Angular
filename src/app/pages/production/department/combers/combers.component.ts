@@ -553,55 +553,63 @@ export class CombersComponent implements OnInit {
   }
 
   onComberParameterAoneSubmit() {
+    let check = 1;
     for (let i = 0; i < this.comberparameterAone.value.parareading.length; i++) {
       let Mid = this.comberparameterAone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursOne': this.comberparameterAone.value.parareading[i].shift_a_sixHoursOne }
       this.comberAllPara.ComberParameterShiftAOne(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.comberparameterAone.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
 
   }
 
   onComberParameterAtwoSubmit() {
+    let check = 1;
     for (let i = 0; i < this.comberparameterAtwo.value.parareading.length; i++) {
       let Mid = this.comberparameterAtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursTwo': this.comberparameterAtwo.value.parareading[i].shift_a_sixHoursTwo }
 
       this.comberAllPara.ComberParameterShiftATwo(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.comberparameterAtwo.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
   onComberParameterBoneSubmit() {
+    let check = 1;
     for (let i = 0; i < this.comberparameterBone.value.parareading.length; i++) {
       let Mid = this.comberparameterBone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_sixHoursOne': this.comberparameterBone.value.parareading[i].shift_b_sixHoursOne }
 
       this.comberAllPara.ComberParameterShiftBOne(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.comberparameterBone.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
   onComberParameterBtwoSubmit() {
+    let check = 1;
     for (let i = 0; i < this.comberparameterBtwo.value.parareading.length; i++) {
       let Mid = this.comberparameterBtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_sixHoursTwo': this.comberparameterBtwo.value.parareading[i].shift_b_sixHoursTwo }
 
       this.comberAllPara.ComberParameterShiftBTwo(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.comberparameterBtwo.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
   // demodd(event: any) {

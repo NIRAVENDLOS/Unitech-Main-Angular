@@ -909,107 +909,121 @@ export class FinisherComponent implements OnInit {
   }
 
   onFinisherParameterAoneSubmit() {
+    let check = 1;
     for (let i = 0; i < this.finisherparameterAone.value.parareading.length; i++) {
       let Mid = this.finisherparameterAone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursOne': this.finisherparameterAone.value.parareading[i].shift_a_sixHoursOne }
       this.finisherAllPara.FinisherParameterShiftAOne(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.finisherparameterAone.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
-
   }
 
   onFinisherParameterAtwoSubmit() {
+    let check = 1;
     for (let i = 0; i < this.finisherparameterAtwo.value.parareading.length; i++) {
       let Mid = this.finisherparameterAtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursTwo': this.finisherparameterAtwo.value.parareading[i].shift_a_sixHoursTwo }
 
       this.finisherAllPara.FinisherParameterShiftATwo(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.finisherparameterAtwo.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
   onFinisherParameterBoneSubmit() {
+    let check = 1;
     for (let i = 0; i < this.finisherparameterBone.value.parareading.length; i++) {
       let Mid = this.finisherparameterBone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_sixHoursOne': this.finisherparameterBone.value.parareading[i].shift_b_sixHoursOne }
 
       this.finisherAllPara.FinisherParameterShiftBOne(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.finisherparameterBone.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
   onFinisherParameterBtwoSubmit() {
+    let check = 1;
     for (let i = 0; i < this.finisherparameterBtwo.value.parareading.length; i++) {
       let Mid = this.finisherparameterBtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_sixHoursTwo': this.finisherparameterBtwo.value.parareading[i].shift_b_sixHoursTwo }
 
       this.finisherAllPara.FinisherParameterShiftBTwo(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.finisherparameterBtwo.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
   onFinisherParameterAoneHankSubmit() {
+    let check = 1;
     for (let i = 0; i < this.finisherparameterHankAone.value.parareading.length; i++) {
       let Mid = this.finisherparameterHankAone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursOne': this.finisherparameterHankAone.value.parareading[i].shift_a_sixHoursOne }
       this.finisherAllPara.FinisherParameterHankShiftAOne(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.finisherparameterHankAone.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
-
   }
 
   onFinisherParameterAtwoHankSubmit() {
+    let check = 1;
     for (let i = 0; i < this.finisherparameterHankAtwo.value.parareading.length; i++) {
       let Mid = this.finisherparameterHankAtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursTwo': this.finisherparameterHankAtwo.value.parareading[i].shift_a_sixHoursTwo }
 
       this.finisherAllPara.FinisherParameterHankShiftATwo(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.finisherparameterHankAtwo.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
   onFinisherParameterBoneHankSubmit() {
+    let check = 1;
     for (let i = 0; i < this.finisherparameterHankBone.value.parareading.length; i++) {
       let Mid = this.finisherparameterHankBone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_sixHoursOne': this.finisherparameterHankBone.value.parareading[i].shift_b_sixHoursOne }
 
       this.finisherAllPara.FinisherParameterHankShiftBOne(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.finisherparameterHankBone.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
   onFinisherParameterBtwoHankSubmit() {
+    let check = 1;
     for (let i = 0; i < this.finisherparameterHankBtwo.value.parareading.length; i++) {
       let Mid = this.finisherparameterHankBtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_sixHoursTwo': this.finisherparameterHankBtwo.value.parareading[i].shift_b_sixHoursTwo }
 
       this.finisherAllPara.FinisherParameterHankShiftBTwo(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.finisherparameterHankBtwo.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
 }

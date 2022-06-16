@@ -605,22 +605,22 @@ export class RingframeComponent implements OnInit {
           this.shiftData = true;
         }
 
-        if (data.Data[i].averageshift_b_HankOne == 0 && this.shiftB1) {
+        if (data.Data[i].averageshift_a_HankSeven == 0 && this.shiftB1) {
           this.shiftData1 = true;
         }
-        if (data.Data[i].averageshift_b_HankTwo == 0 && this.shiftB2) {
+        if (data.Data[i].averageshift_a_HankEight == 0 && this.shiftB2) {
           this.shiftData1 = true;
         }
-        if (data.Data[i].averageshift_b_HankThree == 0 && this.shiftB3) {
+        if (data.Data[i].averageshift_a_HankNine == 0 && this.shiftB3) {
           this.shiftData1 = true;
         }
-        if (data.Data[i].averageshift_b_HankFour == 0 && this.shiftB4) {
+        if (data.Data[i].averageshift_a_HankTen == 0 && this.shiftB4) {
           this.shiftData1 = true;
         }
-        if (data.Data[i].averageshift_b_HankFive == 0 && this.shiftB5) {
+        if (data.Data[i].averageshift_a_HankEleven == 0 && this.shiftB5) {
           this.shiftData1 = true;
         }
-        if (data.Data[i].averageshift_b_HankSix == 0 && this.shiftB6) {
+        if (data.Data[i].averageshift_a_HankTwelev == 0 && this.shiftB6) {
           this.shiftData1 = true;
         }
 
@@ -1001,149 +1001,170 @@ export class RingframeComponent implements OnInit {
   }
 
   onRingframeParameterAoneSubmit() {
+    let check = 1;
     for (let i = 0; i < this.ringframeparameterAOne.value.parareading.length; i++) {
       let Mid = this.ringframeparameterAOne.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_twoHoursOne': this.ringframeparameterAOne.value.parareading[i].shift_a_twoHoursOne }
       this.ringframeAllPara.RingframeParameterShiftAOne(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.ringframeparameterAOne.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
-
   }
   onRingframeParameterAtwoSubmit() {
+    let check = 1;
     for (let i = 0; i < this.ringframeparameterATwo.value.parareading.length; i++) {
       let Mid = this.ringframeparameterATwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_twoHoursTwo': this.ringframeparameterATwo.value.parareading[i].shift_a_twoHoursTwo }
 
       this.ringframeAllPara.RingframeParameterShiftATwo(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.ringframeparameterATwo.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
   onRingframeParameterAthreeSubmit() {
+    let check = 1;
     for (let i = 0; i < this.ringframeparameterAThree.value.parareading.length; i++) {
       let Mid = this.ringframeparameterAThree.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_twoHoursThree': this.ringframeparameterAThree.value.parareading[i].shift_a_twoHoursThree }
 
       this.ringframeAllPara.RingframeParameterShiftAThree(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.ringframeparameterAThree.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
   onRingframeParameterAfourSubmit() {
+    let check = 1;
     for (let i = 0; i < this.ringframeparameterAFour.value.parareading.length; i++) {
       let Mid = this.ringframeparameterAFour.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_twoHoursFour': this.ringframeparameterAFour.value.parareading[i].shift_a_twoHoursFour }
 
       this.ringframeAllPara.RingframerParameterShiftAFour(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.ringframeparameterAFour.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
   onRingframeParameterAfiveSubmit() {
+    let check = 1;
     for (let i = 0; i < this.ringframeparameterAFive.value.parareading.length; i++) {
       let Mid = this.ringframeparameterAFive.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_twoHoursFive': this.ringframeparameterAFive.value.parareading[i].shift_a_twoHoursFive }
       this.ringframeAllPara.RingframeParameterShiftAFive(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.ringframeparameterAFive.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
-
   }
   onRingframeParameterAsixSubmit() {
+    let check = 1;
     for (let i = 0; i < this.ringframeparameterASix.value.parareading.length; i++) {
       let Mid = this.ringframeparameterASix.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_twoHoursSix': this.ringframeparameterASix.value.parareading[i].shift_a_twoHoursSix }
 
       this.ringframeAllPara.RingframeParameterShiftASix(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.ringframeparameterASix.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
   onRingframeParameterBoneSubmit() {
+    let check = 1;
     for (let i = 0; i < this.ringframeparameterBOne.value.parareading.length; i++) {
       let Mid = this.ringframeparameterBOne.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_twoHoursOne': this.ringframeparameterBOne.value.parareading[i].shift_b_twoHoursOne }
 
       this.ringframeAllPara.RingframeParameterShiftBOne(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.ringframeparameterBOne.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
   onRingframeParameterBtwoSubmit() {
+    let check = 1;
     for (let i = 0; i < this.ringframeparameterBTwo.value.parareading.length; i++) {
       let Mid = this.ringframeparameterBTwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_twoHoursTwo': this.ringframeparameterBTwo.value.parareading[i].shift_b_twoHoursTwo }
 
       this.ringframeAllPara.RingframeParameterShiftBTwo(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.ringframeparameterBTwo.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
   onRingframeParameterBthreeSubmit() {
+    let check = 1;
     for (let i = 0; i < this.ringframeparameterBThree.value.parareading.length; i++) {
       let Mid = this.ringframeparameterBThree.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_twoHoursThree': this.ringframeparameterBThree.value.parareading[i].shift_b_twoHoursThree }
       this.ringframeAllPara.RingframeParameterShiftBThree(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.ringframeparameterBThree.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
-
   }
   onRingframeParameterBfourSubmit() {
+    let check = 1;
     for (let i = 0; i < this.ringframeparameterBFour.value.parareading.length; i++) {
       let Mid = this.ringframeparameterBFour.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_twoHoursFour': this.ringframeparameterBFour.value.parareading[i].shift_b_twoHoursFour }
 
       this.ringframeAllPara.RingframeParameterShiftBFour(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.ringframeparameterBFour.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
   onRingframeParameterBfiveSubmit() {
+    let check = 1;
     for (let i = 0; i < this.ringframeparameterBFive.value.parareading.length; i++) {
       let Mid = this.ringframeparameterBFive.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_twoHoursFive': this.ringframeparameterBFive.value.parareading[i].shift_b_twoHoursFive }
 
       this.ringframeAllPara.RingframeParameterShiftBFive(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.ringframeparameterBFive.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
   onRingframeParameterBsixSubmit() {
+    let check = 1;
     for (let i = 0; i < this.ringframeparameterBSix.value.parareading.length; i++) {
       let Mid = this.ringframeparameterBSix.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_twoHoursSix': this.ringframeparameterBSix.value.parareading[i].shift_b_twoHoursSix }
 
       this.ringframeAllPara.RingframeParameterShiftBSix(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.ringframeparameterBSix.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
   // demodd(event: any) {
   //   let Mid = event.value.description.machineId;

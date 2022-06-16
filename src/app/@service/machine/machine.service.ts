@@ -14,7 +14,7 @@ export class MachineService {
   // url = 'http://localhost:9090/unitech/api/v1/addmachine';
 
   CreateBloowRoom(machine:any): Observable<any> {
-    return this.http.post(`${this.url}/bloowroom/save`,machine);
+    return this.http.post(`${this.url}/bloowroom`,machine);
   }
   CreateCarding(machine:any): Observable<any> {
     return this.http.post(`${this.url}/carding/save`,machine);

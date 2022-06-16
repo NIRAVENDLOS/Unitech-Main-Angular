@@ -529,55 +529,62 @@ export class LapformerComponent implements OnInit {
   }
 
   onLapformerParameterAoneSubmit() {
+    let check = 1;
     for (let i = 0; i < this.lapformerparameterAone.value.parareading.length; i++) {
       let Mid = this.lapformerparameterAone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursOne': this.lapformerparameterAone.value.parareading[i].shift_a_sixHoursOne }
       this.lapformerAllPara.LapformerParameterShiftAOne(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.lapformerparameterAone.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
-
   }
 
   onLapformerParameterAtwoSubmit() {
+    let check = 1;
     for (let i = 0; i < this.lapformerparameterAtwo.value.parareading.length; i++) {
       let Mid = this.lapformerparameterAtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursTwo': this.lapformerparameterAtwo.value.parareading[i].shift_a_sixHoursTwo }
 
       this.lapformerAllPara.LapformerParameterShiftATwo(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.lapformerparameterAtwo.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
   onLapformerParameterBoneSubmit() {
+    let check = 1;
     for (let i = 0; i < this.lapformerparameterBone.value.parareading.length; i++) {
       let Mid = this.lapformerparameterBone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_sixHoursOne': this.lapformerparameterBone.value.parareading[i].shift_b_sixHoursOne }
 
       this.lapformerAllPara.LapformerParameterShiftBOne(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.lapformerparameterBone.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
   onLapformerParameterBtwoSubmit() {
+    let check = 1;
     for (let i = 0; i < this.lapformerparameterBtwo.value.parareading.length; i++) {
       let Mid = this.lapformerparameterBtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_sixHoursTwo': this.lapformerparameterBtwo.value.parareading[i].shift_b_sixHoursTwo }
 
       this.lapformerAllPara.LapformerParameterShiftBTwo(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.lapformerparameterBtwo.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
   // demodd(event: any) {
   //   let Mid = event.value.description.machineId;

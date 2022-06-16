@@ -600,55 +600,62 @@ export class SimplexComponent implements OnInit {
   }
 
   onSimplexParameterAoneSubmit() {
+    let check = 1;
     for (let i = 0; i < this.simplexparameterAone.value.parareading.length; i++) {
       let Mid = this.simplexparameterAone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursOne': this.simplexparameterAone.value.parareading[i].shift_a_sixHoursOne }
       this.simplexAllPara.SimplexParameterShiftAOne(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.simplexparameterAone.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
-
   }
 
   onSimplexParameterAtwoSubmit() {
+    let check = 1;
     for (let i = 0; i < this.simplexparameterAtwo.value.parareading.length; i++) {
       let Mid = this.simplexparameterAtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursTwo': this.simplexparameterAtwo.value.parareading[i].shift_a_sixHoursTwo }
 
       this.simplexAllPara.SimplexParameterShiftATwo(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.simplexparameterAtwo.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
   onSimplexParameterBoneSubmit() {
+    let check = 1;
     for (let i = 0; i < this.simplexparameterBone.value.parareading.length; i++) {
       let Mid = this.simplexparameterBone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_sixHoursOne': this.simplexparameterBone.value.parareading[i].shift_b_sixHoursOne }
 
       this.simplexAllPara.SimplexParameterShiftBOne(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.simplexparameterBone.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
   onSimplexParameterBtwoSubmit() {
+    let check = 1;
     for (let i = 0; i < this.simplexparameterBtwo.value.parareading.length; i++) {
       let Mid = this.simplexparameterBtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_sixHoursTwo': this.simplexparameterBtwo.value.parareading[i].shift_b_sixHoursTwo }
 
       this.simplexAllPara.SimplexParameterShiftBTwo(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.simplexparameterBtwo.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
 

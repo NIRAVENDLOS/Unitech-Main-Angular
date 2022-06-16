@@ -535,54 +535,61 @@ export class CardingComponent implements OnInit {
   }
 
   onCardingParameterAoneSubmit() {
+    let check = 1;
     for (let i = 0; i < this.cardingparameterAone.value.parareading.length; i++) {
       let Mid = this.cardingparameterAone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursOne': this.cardingparameterAone.value.parareading[i].shift_a_sixHoursOne }
       this.cardingAllPara.CardingParameterShiftAOne(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.cardingparameterAone.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
-
   }
 
   onCardingParameterAtwoSubmit() {
+    let check = 1;
     for (let i = 0; i < this.cardingparameterAtwo.value.parareading.length; i++) {
       let Mid = this.cardingparameterAtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_a_sixHoursTwo': this.cardingparameterAtwo.value.parareading[i].shift_a_sixHoursTwo }
 
       this.cardingAllPara.CardingParameterShiftATwo(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.cardingparameterAtwo.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
   onCardingParameterBoneSubmit() {
+    let check = 1;
     for (let i = 0; i < this.cardingparameterBone.value.parareading.length; i++) {
       let Mid = this.cardingparameterBone.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_sixHoursOne': this.cardingparameterBone.value.parareading[i].shift_b_sixHoursOne }
 
       this.cardingAllPara.CardingParameterShiftBOne(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.cardingparameterBone.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 
   onCardingParameterBtwoSubmit() {
+    let check = 1;
     for (let i = 0; i < this.cardingparameterBtwo.value.parareading.length; i++) {
       let Mid = this.cardingparameterBtwo.value.parareading[i].description.machineId;
       let Paravalue = { 'shift_b_sixHoursTwo': this.cardingparameterBtwo.value.parareading[i].shift_b_sixHoursTwo }
 
       this.cardingAllPara.CardingParameterShiftBTwo(Mid, Paravalue).subscribe((data: any) => {
+        if (check++ == this.cardingparameterBtwo.value.parareading.length) {
+          this.NbDialogRef.close();
+          location.reload();
+        }
       });
     }
-    this.intervalId = setInterval(() => {
-      location.reload();
-    }, 3000);
   }
 }
